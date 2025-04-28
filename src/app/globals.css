@@ -3,7 +3,9 @@
 
 @custom-variant dark (&:is(.dark *));
 
-
+html,body {
+  height:100%
+}
 
 @theme inline {
   --color-background: var(--background);
@@ -114,11 +116,8 @@
   --sidebar-ring: oklch(0.551 0.027 264.364);
 }
 
-
 @layer base {
-  html, body {
-    @apply h-full;
-  }
+
   * {
     @apply border-border outline-ring/50;
   }

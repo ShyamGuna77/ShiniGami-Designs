@@ -20,10 +20,10 @@ export const Editor  = () => {
     },[init])
     return (
       <>
-        <div className="h-full flex-1 flex flex-col ">
-          <div className=" h-[calc(100%-124px)]" ref={workspaceRef}>
+        <div className="h-full flex flex-col ">
+          <div className="flex-1 h-full bg-muted" ref={workspaceRef}>
             <canvas ref={canvasRef} />
-            Editor Component
+          
           </div>
         </div>
       </>
