@@ -19,13 +19,13 @@ export const Editor  = () => {
          })
     },[init])
     return (
-        <>
-        <div ref = {workspaceRef}>
-            <canvas ref = {canvasRef} />
+      <>
+        <div className="h-full flex-1 flex flex-col ">
+          <div className=" h-[calc(100%-124px)]" ref={workspaceRef}>
+            <canvas ref={canvasRef} />
             Editor Component
-              
-            </div>
-        
-        </>
-    )
+          </div>
+        </div>
+      </>
+    );
 }
