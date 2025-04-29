@@ -1,8 +1,15 @@
 "use client"
 
-import { useCallback,useState } from "react"
+import { useCallback,useState ,useMemo} from "react"
 import { fabric } from "fabric";
 import useAutoResize from "./use-auto-resize";
+
+const buildEditor = () => {
+  return {
+    addCircle:() => {console.log("circle")},
+  }
+}
+
 export const useEditor = () => {
   const [canvas ,setCanvas] = useState<fabric.Canvas | null>(null)
   const [container ,setContainer] = useState<HTMLDivElement | null>(null)
@@ -11,6 +18,15 @@ export const useEditor = () => {
     container
 
   })
+
+  const editor =  useMemo(() => {
+    if(canvas) {
+      return buildEditor()
+    }
+    return undefined
+  },[canvas])
+
+
     const init = useCallback(({initialCanvas , initialContainer}:{
         initialCanvas:fabric.Canvas;
         initialContainer:HTMLDivElement
@@ -61,5 +77,5 @@ export const useEditor = () => {
         initialCanvas.centerObject(test)
     },[])
 
-    return {init}
+    return {init,editor}
 }

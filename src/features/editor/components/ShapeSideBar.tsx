@@ -1,28 +1,58 @@
-
-
-
-import React from 'react'
-import { ActiveTool } from '../types'
-import {cn} from '@/lib/utils'
-
+import { IoTriangle } from "react-icons/io5";
+import { FaDiamond } from "react-icons/fa6";
+import { FaCircle, FaSquare, FaSquareFull } from "react-icons/fa";
+import React from "react";
+import { ActiveTool } from "../types";
+import { cn } from "@/lib/utils";
+import { ToolSidebarHeader } from "./ToolSideBarHeader";
+import { ToolSidebarClose } from "./ToolSideBarclose";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { ShapeTool } from "./ShapeTools";
 type ShapeSideBarProps = {
-    activeTool :ActiveTool;
-    onChangeActiveTool: (tool: ActiveTool) => void
-}
+    editor:any;
+  activeTool: ActiveTool;
+  onChangeActiveTool: (tool: ActiveTool) => void;
+};
 
-const ShapeSideBar = ({activeTool,onChangeActiveTool}:ShapeSideBarProps) => {
+const ShapeSideBar = ({
+    editor,
+  activeTool,
+  onChangeActiveTool,
+}: ShapeSideBarProps) => {
+  const onclose = () => {
+    onChangeActiveTool("select");
+  };
   return (
     <aside
       className={cn(
         "bg-white relative border-r z-[40] w-[360px] h-full flex flex-col",
-        activeTool ===  "shapes" ? "visible" : "hidden"
+        activeTool === "shapes" ? "visible" : "hidden"
       )}
     >
+      <ToolSidebarHeader
+        title="Shapes"
+        description="Add Some Shapes to Your Canvas "
+      />
+      <ScrollArea>
+        <div className="grid grid-cols-3 gap-4 p-4">
+          <ShapeTool onClick={() => editor?.addCircle()  } icon={FaCircle} />
 
-   Shapes Side bar
+          <ShapeTool onClick={() => {}} icon={FaSquare} />
+          <ShapeTool onClick={() => {}} icon={FaSquareFull} />
+          <ShapeTool onClick={() => {}} icon={IoTriangle} />
 
+          <ShapeTool
+            onClick={() => {}}
+            icon={IoTriangle}
+            iconClassName="rotate-180"
+          />
+          <ShapeTool onClick={() => {}} icon={FaDiamond} />
+        </div>
+      </ScrollArea>
+
+      <ToolSidebarClose onClick={onclose} />
     </aside>
   );
-}
+};
 
-export default ShapeSideBar
+export default ShapeSideBar;

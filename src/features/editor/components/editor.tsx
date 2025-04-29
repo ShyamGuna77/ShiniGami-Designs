@@ -32,7 +32,7 @@ export const Editor = () => {
   const canvasRef = useRef(null);
   const workspaceRef = useRef<HTMLDivElement>(null);
 
-  const { init } = useEditor();
+  const { init,editor } = useEditor();
 
   useEffect(() => {
     const canvas = new fabric.Canvas(canvasRef.current, {
@@ -62,6 +62,7 @@ export const Editor = () => {
           />
 
           <ShapeSideBar
+          editor = {editor}
             activeTool={activeTool}
             onChangeActiveTool={onChangeActiveTool}
           />
