@@ -5,10 +5,12 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
+
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+
+import { cn } from "@/lib/utils";
+import { ActiveTool } from "../types";
 
 import { Hint } from "@/components/Hint";
 import { BsCloudCheck } from "react-icons/bs";
@@ -20,7 +22,17 @@ import Logo from "./Logo";
 
 import { Button } from "@/components/ui/button";
 import { CiFileOn } from "react-icons/ci";
-const Navbar = () => {
+
+
+
+interface NavbarProps {
+ 
+ 
+  activeTool: ActiveTool;
+  onChangeActiveTool: (tool: ActiveTool) => void;
+};
+
+const Navbar = ({activeTool,onChangeActiveTool} :NavbarProps) => {
   return (
     <>
       <nav className="w-full flex items-center p-4 h-[68px] gap-x-8 border-b lg:pl-[34px]">
@@ -55,8 +67,8 @@ const Navbar = () => {
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => {}}
-              className="gap-x-2"
+              onClick={() => onChangeActiveTool("select")}
+              className= {cn("gap-x-2",activeTool === "select" && "bg-slate-200 text-primary")}
             >
               <MousePointerClick className="size-4" />
             </Button>
