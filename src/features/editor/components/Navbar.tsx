@@ -11,9 +11,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { Hint } from "@/components/Hint";
+import { BsCloudCheck } from "react-icons/bs";
 
 import { Separator } from "@/components/ui/separator";
-import { MousePointerClick, Undo2, Redo2, ChevronDown } from "lucide-react";
+import { MousePointerClick, Undo2, Redo2, ChevronDown , Download } from "lucide-react";
 
 import Logo from "./Logo";
 
@@ -60,7 +61,7 @@ const Navbar = () => {
               <MousePointerClick className="size-4" />
             </Button>
           </Hint>
-          <Hint label="undo" side="bottom" sideOffset={10}>
+          <Hint label="Undo" side="bottom" sideOffset={10}>
             <Button
               variant="ghost"
               size="icon"
@@ -71,7 +72,6 @@ const Navbar = () => {
             </Button>
           </Hint>
 
-          
           <Hint label="Redo" side="bottom" sideOffset={10}>
             <Button
               variant="ghost"
@@ -82,6 +82,74 @@ const Navbar = () => {
               <Redo2 className="size-4" />
             </Button>
           </Hint>
+
+          <Separator orientation="vertical" className="mx-2" />
+          <div className="flex items-center gap-x-2">
+            <BsCloudCheck className="mr-2 h-4 w-4" />
+            <div className="text-xs text-muted-foreground">Saved</div>
+          </div>
+
+          <div className="ml-auto flex items-center gap-x-4">
+            <DropdownMenu modal={false}>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="sm">
+                  Export
+                  <Download className="ml-2 h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="min-w-68">
+                <DropdownMenuItem
+                  className="flex items-center gap-x-2"
+                  onClick={() => {}}
+                >
+                  <CiFileOn className="mr-2 h-4 w-4" />
+                  <div>
+                    <p>JSON</p>
+                    <p className="text-xs text-muted-foreground">
+                      Save for later Editing
+                    </p>
+                  </div>
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  className="flex items-center gap-x-2"
+                  onClick={() => {}}
+                >
+                  <CiFileOn className="mr-2 h-4 w-4" />
+                  <div>
+                    <p>PNG</p>
+                    <p className="text-xs text-muted-foreground">
+                      Best for Sharing on the Website
+                    </p>
+                  </div>
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  className="flex items-center gap-x-2"
+                  onClick={() => {}}
+                >
+                  <CiFileOn className="mr-2 h-4 w-4" />
+                  <div>
+                    <p>Jpeg</p>
+                    <p className="text-xs text-muted-foreground">
+                      Best for Printing
+                    </p>
+                  </div>
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  className="flex items-center gap-x-2"
+                  onClick={() => {}}
+                >
+                  <CiFileOn className="mr-2 h-4 w-4" />
+                  <div>
+                    <p>SVG</p>
+                    <p className="text-xs text-muted-foreground">
+                      Best for editing in vector software
+                    </p>
+                  </div>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+        {/* Add Todo Button  */}
+          </div>
         </div>
       </nav>
     </>
