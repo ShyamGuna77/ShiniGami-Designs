@@ -24,10 +24,11 @@ const useAutoResize = ({canvas,container}:UseAutoSizeProps) => {
 
       // @ts-ignore
 
-      const scale = fabric.util.findScaleTofit(localWorkSpace, {
+      const scale = fabric.util.findScaleToFit(localWorkSpace, {
         width,
         height,
       });
+      
       const zoom = zoomRatio * scale;
       canvas.setViewportTransform(fabric.iMatrix.concat());
       canvas.zoomToPoint(new fabric.Point(center.left, center.top), zoom);
