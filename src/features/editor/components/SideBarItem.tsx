@@ -10,7 +10,7 @@ interface SidebarItemProps {
   onClick: () => void;
 }
 
-export const SideBarItem = ({
+export const SidebarItem = ({
   icon: Icon,
   label,
   isActive,
