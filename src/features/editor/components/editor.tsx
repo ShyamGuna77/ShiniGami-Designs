@@ -42,7 +42,7 @@ export const Editor  = () => {
               <Footer />
             </main>
           </div>
-        </div>
+        </div> 
       </>
     );
 }
