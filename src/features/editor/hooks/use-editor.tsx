@@ -3,10 +3,40 @@
 import { useCallback,useState ,useMemo} from "react"
 import { fabric } from "fabric";
 import useAutoResize from "./use-auto-resize";
+import { BuildEditorProps, CIRCLE_OPTIONS, Editor } from "../types";
 
-const buildEditor = () => {
+const buildEditor = ({canvas}:BuildEditorProps):Editor => {
+
+
+  const getWorkspace = () => {
+    return canvas
+    .getObjects()
+    .find((object) => object.name === "clip");
+  }
+
+  const center =(object:fabric.Object) => {
+    const workspace = getWorkspace();
+    const center = workspace?.getCenterPoint();
+  if(!center)  return
+      // @ts-ignore
+       canvas._centerObject(object,center);
+  }
+  
   return {
-    addCircle:() => {console.log("circle")},
+    addCircle:() => {
+
+      const object = new fabric.Circle({
+       ...CIRCLE_OPTIONS
+
+      });
+  
+      center(object)
+      canvas.add(object)
+      canvas.setActiveObject(object);
+      
+      console.log("circle")
+    
+    },
   }
 }
 
@@ -21,7 +51,7 @@ export const useEditor = () => {
 
   const editor =  useMemo(() => {
     if(canvas) {
-      return buildEditor()
+     return buildEditor({canvas})
     }
     return undefined
   },[canvas])
@@ -66,15 +96,7 @@ export const useEditor = () => {
         setCanvas(initialCanvas)
         setContainer(initialContainer)
 
-        const test = new fabric.Rect({
-          height:100,
-          width:100,
-          fill:"balck",
-
-        })
-
-        initialCanvas.add(test)
-        initialCanvas.centerObject(test)
+       
     },[])
 
     return {init,editor}

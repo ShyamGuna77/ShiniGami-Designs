@@ -2,14 +2,14 @@ import { IoTriangle } from "react-icons/io5";
 import { FaDiamond } from "react-icons/fa6";
 import { FaCircle, FaSquare, FaSquareFull } from "react-icons/fa";
 import React from "react";
-import { ActiveTool } from "../types";
+import { ActiveTool, Editor } from "../types";
 import { cn } from "@/lib/utils";
 import { ToolSidebarHeader } from "./ToolSideBarHeader";
 import { ToolSidebarClose } from "./ToolSideBarclose";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { ShapeTool } from "./ShapeTools";
 type ShapeSideBarProps = {
-    editor:any;
+    editor:Editor | undefined;
   activeTool: ActiveTool;
   onChangeActiveTool: (tool: ActiveTool) => void;
 };

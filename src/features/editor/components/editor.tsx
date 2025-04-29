@@ -5,7 +5,7 @@ import { fabric } from "fabric";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import Toolbar from "./Toolbar";
-import Footer from "./Footer";
+import Footer from "./Footer"; 
 import { ActiveTool } from "../types";
 import ShapeSideBar from "./ShapeSideBar";
 export const Editor = () => {
