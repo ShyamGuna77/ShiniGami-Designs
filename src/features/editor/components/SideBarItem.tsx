@@ -21,12 +21,12 @@ export const SidebarItem = ({
       variant="ghost"
       onClick={onClick}
       className={cn(
-        "w-full h-full aspect-video p-3 py-4 flex flex-col rounded-none",
-        isActive && "bg-muted text-primary"
+        "w-full h-14 px-2 py-1 flex items-center justify-center flex-col rounded-none",
+        isActive && "bg-slate-200 text-primary"
       )}
     >
       <Icon className="size-5 stroke-2 shrink-0" />
-      <span className="mt-2 text-xs">{label}</span>
+      <span className="text-xs">{label}</span>
     </Button>
   );
 };

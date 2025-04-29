@@ -1,7 +1,7 @@
 "use client";
 
 import {
-  LayoutTemplate,
+  Palette,
   ImageIcon,
   Pencil,
   Settings,
@@ -13,24 +13,17 @@ import {
 import { SidebarItem } from "./SideBarItem";
 import { ActiveTool } from "../types";
 
-
-interface SidebarProps {
-  activeTool: ActiveTool;
-  onChangeActiveTool: (tool: ActiveTool) => void;
-};
-
-
 interface SidebarProps {
   activeTool: ActiveTool;
   onChangeActiveTool: (tool: ActiveTool) => void;
 }
 
- const Sidebar = ({ activeTool, onChangeActiveTool }: SidebarProps) => {
+const Sidebar = ({ activeTool, onChangeActiveTool }: SidebarProps) => {
   return (
-    <aside className="bg-white flex flex-col w-[100px] h-full border-r overflow-y-auto">
-      <ul className="flex flex-col">
+    <aside className="bg-white flex flex-col w-[70px] h-full border-r">
+      <nav className="flex flex-col h-full gap-2 py-2">
         <SidebarItem
-          icon={LayoutTemplate}
+          icon={Palette}
           label="Design"
           isActive={activeTool === "templates"}
           onClick={() => onChangeActiveTool("templates")}
@@ -71,10 +64,9 @@ interface SidebarProps {
           isActive={activeTool === "settings"}
           onClick={() => onChangeActiveTool("settings")}
         />
-      </ul>
+      </nav>
     </aside>
   );
 };
 
-
-export default Sidebar
+export default Sidebar;
