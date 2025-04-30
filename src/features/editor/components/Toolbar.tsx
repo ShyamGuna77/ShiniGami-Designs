@@ -1,4 +1,4 @@
-
+"use client"
 
 import { ActiveTool,Editor } from '../types'
 import { useState } from 'react';

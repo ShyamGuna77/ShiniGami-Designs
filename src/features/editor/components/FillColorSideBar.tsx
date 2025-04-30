@@ -1,4 +1,4 @@
-
+"use client"
 
 import { ActiveTool,Editor,FILL_COLOR } from "../types";
 
