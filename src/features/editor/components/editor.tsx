@@ -13,6 +13,7 @@ import { StrokeColorSidebar } from "./SrokeColorSidebar";
 import { StrokeWidthSidebar } from "./StrokeWidthSidebar";
 import { OpacitySidebar } from "./OpactitySidebar";
 import { TextSidebar } from "./TextSidebar";
+import { FontSidebar } from "./FontSidebar";
 export const Editor = () => {
   const [activeTool, setActiveTool] = useState<ActiveTool>("select");
 
@@ -98,7 +99,12 @@ export const Editor = () => {
             activeTool={activeTool}
             onChangeActiveTool={onChangeActiveTool}
           />
-          
+
+          <FontSidebar
+            editor={editor}
+            activeTool={activeTool}
+            onChangeActiveTool={onChangeActiveTool}
+          />
 
           <main className="bg-muted flex-1 overflow-auto relative flex flex-col">
             <Toolbar
