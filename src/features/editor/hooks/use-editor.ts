@@ -3,6 +3,7 @@
 import { useCallback, useState, useMemo } from "react";
 import { fabric } from "fabric";
 import useAutoResize from "./use-auto-resize";
+import { useCanvasEvents } from "./use-canvas-events";
 import {
   BuildEditorProps,
   CIRCLE_OPTIONS,
@@ -122,7 +123,7 @@ export const useEditor = () => {
 
     useCanvasEvents({
       canvas, 
-      container,
+    
       setSelectedObjects
     })
     

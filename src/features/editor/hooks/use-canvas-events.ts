@@ -3,35 +3,48 @@ import { fabric } from "fabric";
 import { useEffect } from "react";
 interface CanvasEventsProps {
     canvas: fabric.Canvas | null;
-    container: HTMLDivElement | null;
+   
     setSelectedObjects: (objects: fabric.Object[]) => void;
 }
 
 
 
 
-export const useCanvasEvents = ({canvas,container,setSelectedObjects}:CanvasEventsProps) => {
+export const useCanvasEvents = ({canvas,setSelectedObjects}:CanvasEventsProps) => {
 
     useEffect(() => {
-        if (!canvas || !container) {
-            return;
-        }
 
-        if(canvas) {
-            canvas.on("selected :created", (e) => {
-                setSelectedObjects(e.selected || []);
-            });
-              canvas.on("selected :updated", (e) => {
-                setSelectedObjects(e.selected || []);
-              });
-                canvas.on("selected :cleared", () => {
-                  setSelectedObjects( []);
-                });
-        }
+        console.log("use canvas" )
+  
+if (canvas) {
+  canvas.on("selection:created", (e) => {
+    console.log("selection:created");
+    setSelectedObjects(e.selected || []);
+  });
+
+  canvas.on("selection:updated", (e) => {
+    console.log("selection:updated");
+    setSelectedObjects(e.selected || []);
+  });
+
+  canvas.on("selection:cleared", () => {
+    console.log("selection:cleared");
+    setSelectedObjects([]);
+  });
+}
+
+return () => {
+  if (canvas) {
+    canvas.off("selection:created");
+    canvas.off("selection:updated");
+    canvas.off("selection:cleared");
+  }
+};
+
 
 },[
     canvas,
     setSelectedObjects,
-    container               // noo need to add these just a wierd bug bug
+               // noo need to add these just a wierd bug bug
 ])
 }
