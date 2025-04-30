@@ -4,11 +4,13 @@ import { useEditor } from "../hooks/use-editor";
 import { fabric } from "fabric";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
-import Toolbar from "./Toolbar";
+import { Toolbar } from "./Toolbar";
 import Footer from "./Footer"; 
 import { ActiveTool } from "../types";
 import ShapeSideBar from "./ShapeSideBar";
 import { FillColorSidebar } from "./FillColorSideBar";
+import { StrokeColorSidebar } from "./SrokeColorSidebar";
+import { StrokeWidthSidebar } from "./StrokeWidthSidebar";
 export const Editor = () => {
   const [activeTool, setActiveTool] = useState<ActiveTool>("select");
 
@@ -69,6 +71,16 @@ export const Editor = () => {
           />
 
           <FillColorSidebar
+            editor={editor}
+            activeTool={activeTool}
+            onChangeActiveTool={onChangeActiveTool}
+          />
+          <StrokeColorSidebar
+            editor={editor}
+            activeTool={activeTool}
+            onChangeActiveTool={onChangeActiveTool}
+          />
+          <StrokeWidthSidebar
             editor={editor}
             activeTool={activeTool}
             onChangeActiveTool={onChangeActiveTool}
