@@ -4,21 +4,47 @@ import { useCallback, useState, useMemo } from "react";
 import { fabric } from "fabric";
 import useAutoResize from "./use-auto-resize";
 import { useCanvasEvents } from "./use-canvas-events";
+import { isTextType } from "../utils";
 import {
-  BuildEditorProps,
-  CIRCLE_OPTIONS,
-  RECTANGLE_OPTIONS,
-  TRIANGLE_OPTIONS,
-  DIAMOND_OPTIONS,
   Editor,
+  FILL_COLOR,
+  STROKE_WIDTH,
+  STROKE_COLOR,
+  CIRCLE_OPTIONS,
+  DIAMOND_OPTIONS,
+  TRIANGLE_OPTIONS,
+  BuildEditorProps,
+  RECTANGLE_OPTIONS,
+  EditorHookProps,
+  STROKE_DASH_ARRAY,
+  TEXT_OPTIONS,
+  FONT_FAMILY,
+  FONT_WEIGHT,
+  FONT_SIZE,
+  JSON_KEYS,
 } from "../types";
 
 const buildEditor = ({
+  // save,
+  // undo,
+  // redo,
+  // canRedo,
+  // canUndo,
+  // autoZoom,
+  // copy,
+  // paste,
   canvas,
   fillColor,
+  // fontFamily,
+  // setFontFamily,
+  setFillColor,
   strokeColor,
+  setStrokeColor,
   strokeWidth,
+  setStrokeWidth,
+  // selectedObjects,
   strokeDashArray,
+  setStrokeDashArray,
 }: BuildEditorProps): Editor => {
   const getWorkspace = () => {
     return canvas.getObjects().find((object) => object.name === "clip");
@@ -40,9 +66,51 @@ const buildEditor = ({
   };
 
   return {
+    changeFillColor: (value: string) => {
+      setFillColor(value);
+      canvas.getActiveObjects().forEach((object) => {
+        object.set({ fill: value });
+      });
+      canvas.renderAll();
+    },
+    changeStrokeColor: (value: string) => {
+      setStrokeColor(value);
+      canvas.getActiveObjects().forEach((object) => {
+      
+
+        if (isTextType(object.type)) {
+          object.set({ fill: value });
+          return;
+        }
+
+        object.set({ stroke: value });
+      });
+      canvas.freeDrawingBrush.color = value;
+      canvas.renderAll();
+    },
+    changeStrokeWidth: (value: number) => {
+      setStrokeWidth(value);
+      canvas.getActiveObjects().forEach((object) => {
+        object.set({ strokeWidth: value });
+      });
+      canvas.freeDrawingBrush.width = value;
+      canvas.renderAll();
+    },
+    changeStrokeDashArray: (value: number[]) => {
+      setStrokeDashArray(value);
+      canvas.getActiveObjects().forEach((object) => {
+        object.set({ strokeDashArray: value });
+      });
+      canvas.renderAll();
+    },
+
     addCircle: () => {
       const object = new fabric.Circle({
         ...CIRCLE_OPTIONS,
+        fill: fillColor,
+        stroke: strokeColor,
+        strokeWidth: strokeWidth,
+        strokeDashArray: strokeDashArray,
       });
 
       addToCanvas(object);
@@ -50,6 +118,10 @@ const buildEditor = ({
     addSoftRectangle: () => {
       const object = new fabric.Rect({
         ...RECTANGLE_OPTIONS,
+        fill: fillColor,
+        stroke: strokeColor,
+        strokeWidth: strokeWidth,
+        strokeDashArray: strokeDashArray,
         rx: 50,
         ry: 50,
       });
@@ -59,6 +131,10 @@ const buildEditor = ({
     addRectangle: () => {
       const object = new fabric.Rect({
         ...RECTANGLE_OPTIONS,
+        fill: fillColor,
+        stroke: strokeColor,
+        strokeWidth: strokeWidth,
+        strokeDashArray: strokeDashArray,
       });
 
       addToCanvas(object);
@@ -67,6 +143,10 @@ const buildEditor = ({
     addTriangle: () => {
       const object = new fabric.Triangle({
         ...TRIANGLE_OPTIONS,
+        fill: fillColor,
+        stroke: strokeColor,
+        strokeWidth: strokeWidth,
+        strokeDashArray: strokeDashArray,
       });
 
       addToCanvas(object);
@@ -84,7 +164,10 @@ const buildEditor = ({
         ],
         {
           ...TRIANGLE_OPTIONS,
-        
+          fill: fillColor,
+          stroke: strokeColor,
+          strokeWidth: strokeWidth,
+          strokeDashArray: strokeDashArray,
         }
       );
 
@@ -104,10 +187,15 @@ const buildEditor = ({
         ],
         {
           ...DIAMOND_OPTIONS,
+          fill: fillColor,
+          stroke: strokeColor,
+          strokeWidth: strokeWidth,
+          strokeDashArray: strokeDashArray,
         }
       );
       addToCanvas(object);
     },
+
   };
 };
 
@@ -115,6 +203,13 @@ export const useEditor = () => {
   const [canvas, setCanvas] = useState<fabric.Canvas | null>(null);
   const [container, setContainer] = useState<HTMLDivElement | null>(null);
     const [selectedObjects, setSelectedObjects] = useState<fabric.Object[]>([]);
+
+      const [fontFamily, setFontFamily] = useState(FONT_FAMILY);
+      const [fillColor, setFillColor] = useState(FILL_COLOR);
+      const [strokeColor, setStrokeColor] = useState(STROKE_COLOR);
+      const [strokeWidth, setStrokeWidth] = useState(STROKE_WIDTH);
+      const [strokeDashArray, setStrokeDashArray] =
+        useState<number[]>(STROKE_DASH_ARRAY);
 
   useAutoResize({
     canvas,
@@ -129,10 +224,40 @@ export const useEditor = () => {
     
   const editor = useMemo(() => {
     if (canvas) {
-      return buildEditor({ canvas });
+      return buildEditor({
+    
+        canvas,
+        fillColor,
+        strokeWidth,
+        strokeColor,
+        setFillColor,
+        setStrokeColor,
+        setStrokeWidth,
+        strokeDashArray,
+        selectedObjects,
+        setStrokeDashArray,
+        fontFamily,
+        setFontFamily,
+      });
     }
     return undefined;
-  }, [canvas]);
+  }, [
+    // canRedo,
+    // canUndo,
+    // undo,
+    // redo,
+    // save,
+    // autoZoom,
+    // copy,
+    // paste,
+    canvas,
+    fillColor,
+    strokeWidth,
+    strokeColor,
+    selectedObjects,
+    strokeDashArray,
+    fontFamily,
+  ]);
 
   const init = useCallback(
     ({

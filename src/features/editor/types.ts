@@ -181,14 +181,14 @@ export interface EditorHookProps {
 }
 
 export type BuildEditorProps = {
-  undo: () => void;
-  redo: () => void;
-  save: (skip?: boolean) => void;
-  canUndo: () => boolean;
-  canRedo: () => boolean;
-  autoZoom: () => void;
-  copy: () => void;
-  paste: () => void;
+  // undo: () => void;
+  // redo: () => void;
+  // save: (skip?: boolean) => void;
+  // canUndo: () => boolean;
+  // canRedo: () => boolean;
+  // autoZoom: () => void;
+  // copy: () => void;
+  // paste: () => void;
   canvas: fabric.Canvas;
   fillColor: string;
   strokeColor: string;
