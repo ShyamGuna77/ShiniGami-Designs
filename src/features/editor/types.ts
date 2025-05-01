@@ -172,12 +172,12 @@ export interface EditorHookProps {
   defaultState?: string;
   defaultWidth?: number;
   defaultHeight?: number;
-  clearSelectionCallback?: () => void;
-  saveCallback?: (values: {
-    json: string;
-    height: number;
-    width: number;
-  }) => void;
+  // clearSelectionCallback?: () => void;
+  // saveCallback?: (values: {
+  //   json: string;
+  //   height: number;
+  //   width: number;
+  // }) => void;
 }
 
 export type BuildEditorProps = {
@@ -186,7 +186,7 @@ export type BuildEditorProps = {
   // save: (skip?: boolean) => void;
   // canUndo: () => boolean;
   // canRedo: () => boolean;
-  // autoZoom: () => void;
+  autoZoom: () => void;
   // copy: () => void;
   // paste: () => void;
   canvas: fabric.Canvas;

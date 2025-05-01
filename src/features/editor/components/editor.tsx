@@ -38,8 +38,8 @@ export const Editor = () => {
   const canvasRef = useRef(null);
   const workspaceRef = useRef<HTMLDivElement>(null);
 
-  const { init,editor } = useEditor();
-
+  const { init, editor } = useEditor(
+  );
   useEffect(() => {
     const canvas = new fabric.Canvas(canvasRef.current, {
       controlsAboveOverlay: true,

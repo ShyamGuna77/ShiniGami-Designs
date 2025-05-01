@@ -17,7 +17,7 @@ import {
   FONT_FAMILY,
   FONT_WEIGHT,
   FONT_SIZE,
-  JSON_KEYS,
+ 
 } from "@/features/editor/types";
 import { isTextType } from "../utils";
 // import { useHistory } from "@/features/editor/hooks/use-history";
@@ -30,19 +30,19 @@ import { isTextType } from "../utils";
 // import { useHotkeys } from "@/features/editor/hooks/use-hotkeys";
 // import { useClipboard } from "@/features/editor/hooks//use-clipboard";
 import useAutoResize from "./use-auto-resize";
-import { useCanvasEvents } from "@/features/editor/hooks/use-canvas-events";
+// import { useCanvasEvents } from "@/features/editor/hooks/use-canvas-events";
 // import { useWindowEvents } from "@/features/editor/hooks/use-window-events";
 // import { useLoadState } from "@/features/editor/hooks/use-load-state";
 
 const buildEditor = ({
-  save,
-  undo,
-  redo,
-  canRedo,
-  canUndo,
+  // save,
+  // undo,
+  // redo,
+  // canRedo,
+  // canUndo,
   autoZoom,
-  copy,
-  paste,
+  // copy,
+  // paste,
   canvas,
   fillColor,
   fontFamily,
@@ -56,67 +56,67 @@ const buildEditor = ({
   strokeDashArray,
   setStrokeDashArray,
 }: BuildEditorProps): Editor => {
-  const generateSaveOptions = () => {
-    const { width, height, left, top } = getWorkspace() as fabric.Rect;
+  // const generateSaveOptions = () => {
+  //   const { width, height, left, top } = getWorkspace() as fabric.Rect;
 
-    return {
-      name: "Image",
-      format: "png",
-      quality: 1,
-      width,
-      height,
-      left,
-      top,
-    };
-  };
+  //   return {
+  //     name: "Image",
+  //     format: "png",
+  //     quality: 1,
+  //     width,
+  //     height,
+  //     left,
+  //     top,
+  //   };
+  // };
 
-  const savePng = () => {
-    const options = generateSaveOptions();
+  // const savePng = () => {
+  //   const options = generateSaveOptions();
 
-    canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
-    const dataUrl = canvas.toDataURL(options);
+  //   canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
+  //   const dataUrl = canvas.toDataURL(options);
 
-    downloadFile(dataUrl, "png");
-    autoZoom();
-  };
+  //   downloadFile(dataUrl, "png");
+  //   autoZoom();
+  // };
 
-  const saveSvg = () => {
-    const options = generateSaveOptions();
+  // const saveSvg = () => {
+  //   const options = generateSaveOptions();
 
-    canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
-    const dataUrl = canvas.toDataURL(options);
+  //   canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
+  //   const dataUrl = canvas.toDataURL(options);
 
-    downloadFile(dataUrl, "svg");
-    autoZoom();
-  };
+  //   downloadFile(dataUrl, "svg");
+  //   autoZoom();
+  // };
 
-  const saveJpg = () => {
-    const options = generateSaveOptions();
+  // const saveJpg = () => {
+  //   const options = generateSaveOptions();
 
-    canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
-    const dataUrl = canvas.toDataURL(options);
+  //   canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
+  //   const dataUrl = canvas.toDataURL(options);
 
-    downloadFile(dataUrl, "jpg");
-    autoZoom();
-  };
+  //   downloadFile(dataUrl, "jpg");
+  //   autoZoom();
+  // };
 
-  const saveJson = async () => {
-    const dataUrl = canvas.toJSON(JSON_KEYS);
+  // const saveJson = async () => {
+  //   const dataUrl = canvas.toJSON(JSON_KEYS);
 
-    await transformText(dataUrl.objects);
-    const fileString = `data:text/json;charset=utf-8,${encodeURIComponent(
-      JSON.stringify(dataUrl, null, "\t")
-    )}`;
-    downloadFile(fileString, "json");
-  };
+  //   await transformText(dataUrl.objects);
+  //   const fileString = `data:text/json;charset=utf-8,${encodeURIComponent(
+  //     JSON.stringify(dataUrl, null, "\t")
+  //   )}`;
+  //   downloadFile(fileString, "json");
+  // };
 
-  const loadJson = (json: string) => {
-    const data = JSON.parse(json);
+  // const loadJson = (json: string) => {
+  //   const data = JSON.parse(json);
 
-    canvas.loadFromJSON(data, () => {
-      autoZoom();
-    });
-  };
+  //   canvas.loadFromJSON(data, () => {
+  //     autoZoom();
+  //   });
+  // };
 
   const getWorkspace = () => {
     return canvas.getObjects().find((object) => object.name === "clip");
@@ -139,13 +139,13 @@ const buildEditor = ({
   };
 
   return {
-    savePng,
-    saveJpg,
-    saveSvg,
-    saveJson,
-    loadJson,
-    canUndo,
-    canRedo,
+    // savePng,
+    // saveJpg,
+    // saveSvg,
+    // saveJson,
+    // loadJson,
+    // canUndo,
+    // canRedo,
     autoZoom,
     getWorkspace,
     zoomIn: () => {
@@ -171,7 +171,7 @@ const buildEditor = ({
 
       workspace?.set(value);
       autoZoom();
-      save();
+      // save();
     },
     changeBackground: (value: string) => {
       const workspace = getWorkspace();
@@ -189,24 +189,24 @@ const buildEditor = ({
     disableDrawingMode: () => {
       canvas.isDrawingMode = false;
     },
-    onUndo: () => undo(),
-    onRedo: () => redo(),
-    onCopy: () => copy(),
-    onPaste: () => paste(),
-    changeImageFilter: (value: string) => {
-      const objects = canvas.getActiveObjects();
-      objects.forEach((object) => {
-        if (object.type === "image") {
-          const imageObject = object as fabric.Image;
+    // onUndo: () => undo(),
+    // onRedo: () => redo(),
+    // onCopy: () => copy(),
+    // onPaste: () => paste(),
+    // changeImageFilter: (value: string) => {
+    //   const objects = canvas.getActiveObjects();
+    //   objects.forEach((object) => {
+    //     if (object.type === "image") {
+    //       const imageObject = object as fabric.Image;
 
-          const effect = createFilter(value);
+    //       const effect = createFilter(value);
 
-          imageObject.filters = effect ? [effect] : [];
-          imageObject.applyFilters();
-          canvas.renderAll();
-        }
-      });
-    },
+    //       imageObject.filters = effect ? [effect] : [];
+    //       imageObject.applyFilters();
+    //       canvas.renderAll();
+    //     }
+    //   });
+    // },
     addImage: (value: string) => {
       fabric.Image.fromURL(
         value,
@@ -609,16 +609,10 @@ const buildEditor = ({
   };
 };
 
-export const useEditor = ({
-  defaultState,
-  defaultHeight,
-  defaultWidth,
-  clearSelectionCallback,
-  saveCallback,
-}: EditorHookProps) => {
-  const initialState = useRef(defaultState);
-  const initialWidth = useRef(defaultWidth);
-  const initialHeight = useRef(defaultHeight);
+export const useEditor = () => {
+  // const initialState = useRef(defaultState);
+  // const initialWidth = useRef(defaultWidth);
+  // const initialHeight = useRef(defaultHeight);
 
   const [canvas, setCanvas] = useState<fabric.Canvas | null>(null);
   const [container, setContainer] = useState<HTMLDivElement | null>(null);
@@ -631,56 +625,56 @@ export const useEditor = ({
   const [strokeDashArray, setStrokeDashArray] =
     useState<number[]>(STROKE_DASH_ARRAY);
 
-  useWindowEvents();
+  // useWindowEvents();
 
-  const { save, canRedo, canUndo, undo, redo, canvasHistory, setHistoryIndex } =
-    useHistory({
-      canvas,
-      saveCallback,
-    });
+  // const { save, canRedo, canUndo, undo, redo, canvasHistory, setHistoryIndex } =
+  //   useHistory({
+  //     canvas,
+  //     saveCallback,
+  //   });
 
-  const { copy, paste } = useClipboard({ canvas });
+  // const { copy, paste } = useClipboard({ canvas });
 
   const { autoZoom } = useAutoResize({
     canvas,
     container,
   });
 
-  useCanvasEvents({
-    save,
-    canvas,
-    setSelectedObjects,
-    clearSelectionCallback,
-  });
+  // useCanvasEvents({
+  //   save,
+  //   canvas,
+  //   setSelectedObjects,
+  //   clearSelectionCallback,
+  // });
 
-  useHotkeys({
-    undo,
-    redo,
-    copy,
-    paste,
-    save,
-    canvas,
-  });
+  // useHotkeys({
+  //   undo,
+  //   redo,
+  //   copy,
+  //   paste,
+  //   save,
+  //   canvas,
+  // });
 
-  useLoadState({
-    canvas,
-    autoZoom,
-    initialState,
-    canvasHistory,
-    setHistoryIndex,
-  });
+  // useLoadState({
+  //   canvas,
+  //   autoZoom,
+  //   initialState,
+  //   canvasHistory,
+  //   setHistoryIndex,
+  // });
 
   const editor = useMemo(() => {
     if (canvas) {
       return buildEditor({
-        save,
-        undo,
-        redo,
-        canUndo,
-        canRedo,
+        // save,
+        // undo,
+        // redo,
+        // canUndo,
+        // canRedo,
         autoZoom,
-        copy,
-        paste,
+        // copy,
+        // paste,
         canvas,
         fillColor,
         strokeWidth,
@@ -698,14 +692,14 @@ export const useEditor = ({
 
     return undefined;
   }, [
-    canRedo,
-    canUndo,
-    undo,
-    redo,
-    save,
+    // canRedo,
+    // canUndo,
+    // undo,
+    // redo,
+    // save,
     autoZoom,
-    copy,
-    paste,
+    // copy,
+    // paste,
     canvas,
     fillColor,
     strokeWidth,
@@ -734,8 +728,8 @@ export const useEditor = ({
       });
 
       const initialWorkspace = new fabric.Rect({
-        width: initialWidth.current,
-        height: initialHeight.current,
+        width: 200,
+        height: 200,
         name: "clip",
         fill: "white",
         selectable: false,
@@ -756,13 +750,13 @@ export const useEditor = ({
       setCanvas(initialCanvas);
       setContainer(initialContainer);
 
-      const currentState = JSON.stringify(initialCanvas.toJSON(JSON_KEYS));
-      canvasHistory.current = [currentState];
-      setHistoryIndex(0);
+      // const currentState = JSON.stringify(initialCanvas.toJSON(JSON_KEYS));
+      // canvasHistory.current = [currentState];
+      // setHistoryIndex(0);
     },
     [
-      canvasHistory, // No need, this is from useRef
-      setHistoryIndex, // No need, this is from useState
+      // canvasHistory, // No need, this is from useRef
+      // setHistoryIndex, // No need, this is from useState
     ]
   );
 
