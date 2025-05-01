@@ -16,7 +16,7 @@ app.get("/test", (c) => {
   });
 });
 
-app.get("/posts/:id", (c) => {
+const routes =app.get("/posts/:id", (c) => {
   const page = c.req.query("page");
   const id = c.req.param("id");
   c.header("X-Message", "Hi!");
@@ -24,7 +24,7 @@ app.get("/posts/:id", (c) => {
 });
 
 
-app.get("/tests/:id" , (e) => {
+ const routes = app.get("/tests/:id" , (e) => {
     const test = e.req.query("test")
     const id  = e.req.param("id")
     return e.text(`Hey There this is  from test you want to see ${test} of ${id}`)   
@@ -34,3 +34,5 @@ app.get("/tests/:id" , (e) => {
 
 export const GET = handle(app);
 export const POST = handle(app);
+
+export type AppType = typeof routes;
