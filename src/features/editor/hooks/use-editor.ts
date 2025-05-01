@@ -403,7 +403,7 @@ const buildEditor = ({
       canvas.getActiveObjects().forEach((object) => {
         if (isTextType(object.type)) {
           // @ts-ignore
-          // Faulty TS library, fontFamily exists.
+         // jsut a typescript wierd error
           object.set({ fontFamily: value });
         }
       });
