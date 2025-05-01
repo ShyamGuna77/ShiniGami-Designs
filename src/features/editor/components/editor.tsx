@@ -39,6 +39,7 @@ export const Editor = () => {
   const workspaceRef = useRef<HTMLDivElement>(null);
 
   const { init, editor } = useEditor(
+    
   );
   useEffect(() => {
     const canvas = new fabric.Canvas(canvasRef.current, {

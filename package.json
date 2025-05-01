@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hono/zod-validator": "^0.5.0",
     "@radix-ui/react-dropdown-menu": "^2.1.12",
     "@radix-ui/react-label": "^2.1.4",
     "@radix-ui/react-scroll-area": "^1.2.6",
@@ -19,6 +20,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "fabric": "^5.3.0-browser",
+    "hono": "^4.7.8",
     "jsdom": "^26.1.0",
     "lucide-react": "^0.503.0",
     "material-colors": "^1.2.6",
@@ -27,7 +29,8 @@
     "react-color": "^2.19.3",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
-    "tailwind-merge": "^3.2.0"
+    "tailwind-merge": "^3.2.0",
+    "zod": "^3.24.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
