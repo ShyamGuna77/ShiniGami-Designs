@@ -1,6 +1,3 @@
-
-
-
 import Image from "next/image";
 import Link from "next/link";
 import { AlertTriangle, Loader, Upload } from "lucide-react";
@@ -43,18 +40,20 @@ export const ImageSidebar = ({
         title="Images"
         description="Add images to your canvas"
       />
-      <div className="p-4 border-b">
+      <div className="p-4 border-b space-y-2">
         <UploadButton
           appearance={{
-            button: "w-full text-sm font-medium",
-            allowedContent: "hidden",
+            button:
+              "bg-blue-600 hover:bg-blue-700 text-center text-white text-sm font-semibold px-2 py-2 rounded-md transition-all duration-200 disabled:cursor-not-allowed ut-uploading:bg-gray-500 ut-ready:bg-blue-500",
+            container: "w-full",
+            allowedContent: "text-xs text-gray-500 mt-1 text-center",
           }}
           content={{
-            button: "Upload Image",
+            button: ".", 
           }}
           endpoint="imageUploader"
           onClientUploadComplete={(res) => {
-            editor?.addImage(res[0].url);
+            editor?.addImage(res[0].ufsUrl);
           }}
         />
       </div>
