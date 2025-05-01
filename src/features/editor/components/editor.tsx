@@ -5,7 +5,7 @@ import { fabric } from "fabric";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import { Toolbar } from "./Toolbar";
-import Footer from "./Footer"; 
+import Footer from "./Footer";
 import { ActiveTool } from "../types";
 import ShapeSideBar from "./ShapeSideBar";
 import { FillColorSidebar } from "./FillColorSideBar";
@@ -14,6 +14,7 @@ import { StrokeWidthSidebar } from "./StrokeWidthSidebar";
 import { OpacitySidebar } from "./OpactitySidebar";
 import { TextSidebar } from "./TextSidebar";
 import { FontSidebar } from "./FontSidebar";
+import { ImageSidebar } from "./ImageSidebar";
 export const Editor = () => {
   const [activeTool, setActiveTool] = useState<ActiveTool>("select");
 
@@ -38,9 +39,7 @@ export const Editor = () => {
   const canvasRef = useRef(null);
   const workspaceRef = useRef<HTMLDivElement>(null);
 
-  const { init, editor } = useEditor(
-    
-  );
+  const { init, editor } = useEditor();
   useEffect(() => {
     const canvas = new fabric.Canvas(canvasRef.current, {
       controlsAboveOverlay: true,
@@ -102,6 +101,12 @@ export const Editor = () => {
           />
 
           <FontSidebar
+            editor={editor}
+            activeTool={activeTool}
+            onChangeActiveTool={onChangeActiveTool}
+          />
+
+          <ImageSidebar
             editor={editor}
             activeTool={activeTool}
             onChangeActiveTool={onChangeActiveTool}

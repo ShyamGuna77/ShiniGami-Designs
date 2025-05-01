@@ -608,7 +608,7 @@ const buildEditor = ({
     selectedObjects,
   };
 };
-
+ 
 export const useEditor = () => {
   // const initialState = useRef(defaultState);
   // const initialWidth = useRef(defaultWidth);
