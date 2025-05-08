@@ -9,13 +9,13 @@ import { ToolSidebarClose } from "./ToolSideBarclose";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { ShapeTool } from "./ShapeTools";
 type ShapeSideBarProps = {
-    editor:Editor | undefined;
+  editor: Editor | undefined;
   activeTool: ActiveTool;
   onChangeActiveTool: (tool: ActiveTool) => void;
 };
 
 const ShapeSideBar = ({
-    editor,
+  editor,
   activeTool,
   onChangeActiveTool,
 }: ShapeSideBarProps) => {
@@ -35,10 +35,16 @@ const ShapeSideBar = ({
       />
       <ScrollArea>
         <div className="grid grid-cols-3 gap-4 p-4">
-          <ShapeTool onClick={() => editor?.addCircle()  } icon={FaCircle} />
+          <ShapeTool onClick={() => editor?.addCircle()} icon={FaCircle} />
 
-          <ShapeTool onClick={() => editor?.addSoftRectangle()} icon={FaSquare} />
-          <ShapeTool onClick={() => editor?.addRectangle()} icon={FaSquareFull} />
+          <ShapeTool
+            onClick={() => editor?.addSoftRectangle()}
+            icon={FaSquare}
+          />
+          <ShapeTool
+            onClick={() => editor?.addRectangle()}
+            icon={FaSquareFull}
+          />
           <ShapeTool onClick={() => editor?.addTriangle()} icon={IoTriangle} />
 
           <ShapeTool

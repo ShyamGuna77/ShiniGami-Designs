@@ -17,7 +17,6 @@ import {
   FONT_FAMILY,
   FONT_WEIGHT,
   FONT_SIZE,
- 
 } from "@/features/editor/types";
 import { isTextType } from "../utils";
 // import { useHistory } from "@/features/editor/hooks/use-history";
@@ -28,9 +27,9 @@ import { isTextType } from "../utils";
 //   transformText,
 // } from "@/features/editor/utils";
 // import { useHotkeys } from "@/features/editor/hooks/use-hotkeys";
-// import { useClipboard } from "@/features/editor/hooks//use-clipboard";
+import { useClipboard } from "@/features/editor/hooks/use-clipboard";
 import useAutoResize from "./use-auto-resize";
-// import { useCanvasEvents } from "@/features/editor/hooks/use-canvas-events";
+import { useCanvasEvents } from "@/features/editor/hooks/use-canvas-events";
 // import { useWindowEvents } from "@/features/editor/hooks/use-window-events";
 // import { useLoadState } from "@/features/editor/hooks/use-load-state";
 
@@ -55,6 +54,8 @@ const buildEditor = ({
   selectedObjects,
   strokeDashArray,
   setStrokeDashArray,
+  onCopy,
+  onPaste,
 }: BuildEditorProps): Editor => {
   // const generateSaveOptions = () => {
   //   const { width, height, left, top } = getWorkspace() as fabric.Rect;
@@ -191,8 +192,8 @@ const buildEditor = ({
     },
     // onUndo: () => undo(),
     // onRedo: () => redo(),
-    // onCopy: () => copy(),
-    // onPaste: () => paste(),
+    onCopy,
+    onPaste,
     // changeImageFilter: (value: string) => {
     //   const objects = canvas.getActiveObjects();
     //   objects.forEach((object) => {
@@ -403,7 +404,7 @@ const buildEditor = ({
       canvas.getActiveObjects().forEach((object) => {
         if (isTextType(object.type)) {
           // @ts-ignore
-         // jsut a typescript wierd error
+          // jsut a typescript wierd error
           object.set({ fontFamily: value });
         }
       });
@@ -608,7 +609,7 @@ const buildEditor = ({
     selectedObjects,
   };
 };
- 
+
 export const useEditor = () => {
   // const initialState = useRef(defaultState);
   // const initialWidth = useRef(defaultWidth);
@@ -633,19 +634,17 @@ export const useEditor = () => {
   //     saveCallback,
   //   });
 
-  // const { copy, paste } = useClipboard({ canvas });
-
   const { autoZoom } = useAutoResize({
     canvas,
     container,
   });
 
-  // useCanvasEvents({
-  //   save,
-  //   canvas,
-  //   setSelectedObjects,
-  //   clearSelectionCallback,
-  // });
+  useCanvasEvents({
+    canvas,
+    setSelectedObjects,
+  });
+
+  const { copy, paste } = useClipboard({ canvas });
 
   // useHotkeys({
   //   undo,
@@ -687,6 +686,8 @@ export const useEditor = () => {
         setStrokeDashArray,
         fontFamily,
         setFontFamily,
+        onCopy: copy,
+        onPaste: paste,
       });
     }
 
@@ -707,6 +708,8 @@ export const useEditor = () => {
     selectedObjects,
     strokeDashArray,
     fontFamily,
+    copy,
+    paste,
   ]);
 
   const init = useCallback(

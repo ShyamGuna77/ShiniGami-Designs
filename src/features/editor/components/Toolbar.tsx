@@ -175,35 +175,91 @@ export const Toolbar = ({
         </div>
       )}
       {!isText && (
-        <div className="flex items-center h-full justify-center">
-          <Hint label="Stroke color" side="bottom" sideOffset={5}>
-            <Button
-              onClick={() => onChangeActiveTool("stroke-color")}
-              size="icon"
-              variant="ghost"
-              className={cn(activeTool === "stroke-color" && "bg-gray-100")}
-            >
-              <div
-                className="rounded-sm size-4 border-2 bg-white"
-                style={{ borderColor: properties.strokeColor }}
-              />
-            </Button>
-          </Hint>
-        </div>
-      )}
-      {!isText && (
-        <div className="flex items-center h-full justify-center">
-          <Hint label="Stroke width" side="bottom" sideOffset={5}>
-            <Button
-              onClick={() => onChangeActiveTool("stroke-width")}
-              size="icon"
-              variant="ghost"
-              className={cn(activeTool === "stroke-width" && "bg-gray-100")}
-            >
-              <BsBorderWidth className="size-4" />
-            </Button>
-          </Hint>
-        </div>
+        <>
+          <div className="flex items-center h-full justify-center">
+            <Hint label="Stroke color" side="bottom" sideOffset={5}>
+              <Button
+                onClick={() => onChangeActiveTool("stroke-color")}
+                size="icon"
+                variant="ghost"
+                className={cn(activeTool === "stroke-color" && "bg-gray-100")}
+              >
+                <div
+                  className="rounded-sm size-4 border-2 bg-white"
+                  style={{ borderColor: properties.strokeColor }}
+                />
+              </Button>
+            </Hint>
+          </div>
+          <div className="flex items-center h-full justify-center">
+            <Hint label="Stroke width" side="bottom" sideOffset={5}>
+              <Button
+                onClick={() => onChangeActiveTool("stroke-width")}
+                size="icon"
+                variant="ghost"
+                className={cn(activeTool === "stroke-width" && "bg-gray-100")}
+              >
+                <BsBorderWidth className="size-4" />
+              </Button>
+            </Hint>
+          </div>
+          <div className="flex items-center h-full justify-center">
+            <Hint label="Opacity" side="bottom" sideOffset={5}>
+              <Button
+                onClick={() => onChangeActiveTool("opacity")}
+                size="icon"
+                variant="ghost"
+                className={cn(activeTool === "opacity" && "bg-gray-100")}
+              >
+                <RxTransparencyGrid className="size-4" />
+              </Button>
+            </Hint>
+          </div>
+          <div className="flex items-center h-full justify-center">
+            <Hint label="Bring forward" side="bottom" sideOffset={5}>
+              <Button
+                onClick={() => editor?.bringForward()}
+                size="icon"
+                variant="ghost"
+              >
+                <ArrowUp className="size-4" />
+              </Button>
+            </Hint>
+          </div>
+          <div className="flex items-center h-full justify-center">
+            <Hint label="Send backward" side="bottom" sideOffset={5}>
+              <Button
+                onClick={() => editor?.sendBackwards()}
+                size="icon"
+                variant="ghost"
+              >
+                <ArrowDown className="size-4" />
+              </Button>
+            </Hint>
+          </div>
+          <div className="flex items-center h-full justify-center">
+            <Hint label="Delete" side="bottom" sideOffset={5}>
+              <Button
+                onClick={() => editor?.delete()}
+                size="icon"
+                variant="ghost"
+              >
+                <Trash className="size-4" />
+              </Button>
+            </Hint>
+          </div>
+          <div className="flex items-center h-full justify-center">
+            <Hint label="Copy" side="bottom" sideOffset={5}>
+              <Button
+                onClick={() => editor?.onCopy()}
+                size="icon"
+                variant="ghost"
+              >
+                <Copy className="size-4" />
+              </Button>
+            </Hint>
+          </div>
+        </>
       )}
       {isText && (
         <div className="flex items-center h-full justify-center">
@@ -359,61 +415,6 @@ export const Toolbar = ({
           </Hint>
         </div>
       )}
-      <div className="flex items-center h-full justify-center">
-        <Hint label="Bring forward" side="bottom" sideOffset={5}>
-          <Button
-            onClick={() => editor?.bringForward()}
-            size="icon"
-            variant="ghost"
-          >
-            <ArrowUp className="size-4" />
-          </Button>
-        </Hint>
-      </div>
-      <div className="flex items-center h-full justify-center">
-        <Hint label="Send backwards" side="bottom" sideOffset={5}>
-          <Button
-            onClick={() => editor?.sendBackwards()}
-            size="icon"
-            variant="ghost"
-          >
-            <ArrowDown className="size-4" />
-          </Button>
-        </Hint>
-      </div>
-      <div className="flex items-center h-full justify-center">
-        <Hint label="Opacity" side="bottom" sideOffset={5}>
-          <Button
-            onClick={() => onChangeActiveTool("opacity")}
-            size="icon"
-            variant="ghost"
-            className={cn(activeTool === "opacity" && "bg-gray-100")}
-          >
-            <RxTransparencyGrid className="size-4" />
-          </Button>
-        </Hint>
-      </div>
-      <div className="flex items-center h-full justify-center">
-        <Hint label="Duplicate" side="bottom" sideOffset={5}>
-          <Button
-            onClick={() => {
-              editor?.onCopy();
-              editor?.onPaste();
-            }}
-            size="icon"
-            variant="ghost"
-          >
-            <Copy className="size-4" />
-          </Button>
-        </Hint>
-      </div>
-      <div className="flex items-center h-full justify-center">
-        <Hint label="Delete" side="bottom" sideOffset={5}>
-          <Button onClick={() => editor?.delete()} size="icon" variant="ghost">
-            <Trash className="size-4" />
-          </Button>
-        </Hint>
-      </div>
     </div>
   );
 };
