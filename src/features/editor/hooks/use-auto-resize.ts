@@ -22,7 +22,7 @@ const useAutoResize = ({canvas,container}:UseAutoSizeProps) => {
         .getObjects()
         .find((object) => object.name === "clip");
 
-      // @ts-ignore
+      // @ts-expect-error just a type error
 
       const scale = fabric.util.findScaleToFit(localWorkSpace, {
         width,

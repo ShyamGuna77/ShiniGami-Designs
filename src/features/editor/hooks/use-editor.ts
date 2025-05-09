@@ -54,7 +54,6 @@ const buildEditor = ({
   selectedObjects,
   strokeDashArray,
   setStrokeDashArray,
-  
 }: BuildEditorProps): Editor => {
   // const generateSaveOptions = () => {
   //   const { width, height, left, top } = getWorkspace() as fabric.Rect;
@@ -128,7 +127,7 @@ const buildEditor = ({
 
     if (!center) return;
 
-    // @ts-ignore
+    // @ts-expect-error - Fabric.js internal method not typed
     canvas._centerObject(object, center);
   };
 
@@ -191,7 +190,7 @@ const buildEditor = ({
     },
     // onUndo: () => undo(),
     // onRedo: () => redo(),
-    onCopy: ( ) => copy(),
+    onCopy: () => copy(),
     onPaste: () => paste(),
     changeImageFilter: (value: string) => {
       const objects = canvas.getActiveObjects();
@@ -251,8 +250,7 @@ const buildEditor = ({
     changeFontSize: (value: number) => {
       canvas.getActiveObjects().forEach((object) => {
         if (isTextType(object.type)) {
-          // @ts-ignore
-          // Faulty TS library, fontSize exists.
+          // @ts-expect-error - Fabric.js text properties not properly typed
           object.set({ fontSize: value });
         }
       });
@@ -265,8 +263,7 @@ const buildEditor = ({
         return FONT_SIZE;
       }
 
-      // @ts-ignore
-      // Faulty TS library, fontSize exists.
+      // @ts-expect-error - Fabric.js text properties not properly typed
       const value = selectedObject.get("fontSize") || FONT_SIZE;
 
       return value;
@@ -274,8 +271,7 @@ const buildEditor = ({
     changeTextAlign: (value: string) => {
       canvas.getActiveObjects().forEach((object) => {
         if (isTextType(object.type)) {
-          // @ts-ignore
-          // Faulty TS library, textAlign exists.
+          // @ts-expect-error - Fabric.js text properties not properly typed
           object.set({ textAlign: value });
         }
       });
@@ -288,8 +284,7 @@ const buildEditor = ({
         return "left";
       }
 
-      // @ts-ignore
-      // Faulty TS library, textAlign exists.
+      // @ts-expect-error - Fabric.js text properties not properly typed
       const value = selectedObject.get("textAlign") || "left";
 
       return value;
@@ -297,8 +292,7 @@ const buildEditor = ({
     changeFontUnderline: (value: boolean) => {
       canvas.getActiveObjects().forEach((object) => {
         if (isTextType(object.type)) {
-          // @ts-ignore
-          // Faulty TS library, underline exists.
+          // @ts-expect-error - Fabric.js text properties not properly typed
           object.set({ underline: value });
         }
       });
@@ -311,8 +305,7 @@ const buildEditor = ({
         return false;
       }
 
-      // @ts-ignore
-      // Faulty TS library, underline exists.
+      // @ts-expect-error - Fabric.js text properties not properly typed
       const value = selectedObject.get("underline") || false;
 
       return value;
@@ -320,8 +313,7 @@ const buildEditor = ({
     changeFontLinethrough: (value: boolean) => {
       canvas.getActiveObjects().forEach((object) => {
         if (isTextType(object.type)) {
-          // @ts-ignore
-          // Faulty TS library, linethrough exists.
+          // @ts-expect-error - Fabric.js text properties not properly typed
           object.set({ linethrough: value });
         }
       });
@@ -334,8 +326,7 @@ const buildEditor = ({
         return false;
       }
 
-      // @ts-ignore
-      // Faulty TS library, linethrough exists.
+      // @ts-expect-error - Fabric.js text properties not properly typed
       const value = selectedObject.get("linethrough") || false;
 
       return value;
@@ -343,8 +334,7 @@ const buildEditor = ({
     changeFontStyle: (value: string) => {
       canvas.getActiveObjects().forEach((object) => {
         if (isTextType(object.type)) {
-          // @ts-ignore
-          // Faulty TS library, fontStyle exists.
+          // @ts-expect-error - Fabric.js text properties not properly typed
           object.set({ fontStyle: value });
         }
       });
@@ -357,8 +347,7 @@ const buildEditor = ({
         return "normal";
       }
 
-      // @ts-ignore
-      // Faulty TS library, fontStyle exists.
+      // @ts-expect-error - Fabric.js text properties not properly typed
       const value = selectedObject.get("fontStyle") || "normal";
 
       return value;
@@ -366,8 +355,7 @@ const buildEditor = ({
     changeFontWeight: (value: number) => {
       canvas.getActiveObjects().forEach((object) => {
         if (isTextType(object.type)) {
-          // @ts-ignore
-          // Faulty TS library, fontWeight exists.
+          // @ts-expect-error - Fabric.js text properties not properly typed
           object.set({ fontWeight: value });
         }
       });
@@ -402,8 +390,7 @@ const buildEditor = ({
       setFontFamily(value);
       canvas.getActiveObjects().forEach((object) => {
         if (isTextType(object.type)) {
-          // @ts-ignore
-          // jsut a typescript wierd error
+          // @ts-expect-error - Fabric.js text properties not properly typed
           object.set({ fontFamily: value });
         }
       });
@@ -541,8 +528,7 @@ const buildEditor = ({
         return FONT_WEIGHT;
       }
 
-      // @ts-ignore
-      // Faulty TS library, fontWeight exists.
+      // @ts-expect-error - Fabric.js text properties not properly typed
       const value = selectedObject.get("fontWeight") || FONT_WEIGHT;
 
       return value;
@@ -554,8 +540,7 @@ const buildEditor = ({
         return fontFamily;
       }
 
-      // @ts-ignore
-      // Faulty TS library, fontFamily exists.
+      // @ts-expect-error - Fabric.js text properties not properly typed
       const value = selectedObject.get("fontFamily") || fontFamily;
 
       return value;
@@ -685,7 +670,6 @@ export const useEditor = () => {
         setStrokeDashArray,
         fontFamily,
         setFontFamily,
-       
       });
     }
 
