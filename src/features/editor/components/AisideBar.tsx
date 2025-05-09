@@ -7,6 +7,9 @@ import { ToolSidebarHeader } from "./ToolSideBarHeader";
 
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { useGenerateImage } from "@/features/ai/api/use-generate-image";
+import { cn } from "@/lib/utils";
+import { Textarea } from "@/components/ui/textarea";
 
 
 interface AiSidebarProps {
@@ -28,10 +31,10 @@ export const AiSidebar = ({
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (shouldBlock) {
-      triggerPaywall();
-      return;
-    }
+    // if (shouldBlock) {
+    //   triggerPaywall();
+    //   return;
+    // }
 
     mutation.mutate(
       { prompt: value },
