@@ -161,7 +161,7 @@ export const Editor = () => {
             <div className="flex-1 h-full bg-muted" ref={workspaceRef}>
               <canvas ref={canvasRef} />
             </div>
-            <Footer />
+            <Footer editor={editor} />
           </main>
         </div>
       </div>
