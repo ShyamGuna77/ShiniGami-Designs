@@ -44,6 +44,10 @@ export const useClipboard = ({ canvas }: UseClipboardProps) => {
         canvas.add(cloned);
       }
 
+      //  clipboard.current.top = (clipboard.current.top || 0) + 10;
+      //  clipboard.current.left = (clipboard.current.left || 0) + 10;
+
+
       canvas.setActiveObject(cloned);
       canvas.requestRenderAll();
     });

@@ -249,9 +249,15 @@ export const Toolbar = ({
             </Hint>
           </div>
           <div className="flex items-center h-full justify-center">
-            <Hint label="Copy" side="bottom" sideOffset={5}>
+            <Hint label="Duplicate" side="bottom" sideOffset={5}>
               <Button
-                onClick={() => editor?.onCopy()}
+                onClick={() => 
+                  {editor?.onCopy();
+                   editor?.onPaste()
+                }
+
+
+                }
                 size="icon"
                 variant="ghost"
               >

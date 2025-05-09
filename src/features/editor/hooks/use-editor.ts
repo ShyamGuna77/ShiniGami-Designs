@@ -40,8 +40,8 @@ const buildEditor = ({
   // canRedo,
   // canUndo,
   autoZoom,
-  // copy,
-  // paste,
+  copy,
+  paste,
   canvas,
   fillColor,
   fontFamily,
@@ -54,8 +54,7 @@ const buildEditor = ({
   selectedObjects,
   strokeDashArray,
   setStrokeDashArray,
-  onCopy,
-  onPaste,
+  
 }: BuildEditorProps): Editor => {
   // const generateSaveOptions = () => {
   //   const { width, height, left, top } = getWorkspace() as fabric.Rect;
@@ -192,8 +191,8 @@ const buildEditor = ({
     },
     // onUndo: () => undo(),
     // onRedo: () => redo(),
-    onCopy,
-    onPaste,
+    onCopy: ( ) => copy(),
+    onPaste: () => paste(),
     changeImageFilter: (value: string) => {
       const objects = canvas.getActiveObjects();
       objects.forEach((object) => {
@@ -672,8 +671,8 @@ export const useEditor = () => {
         // canUndo,
         // canRedo,
         autoZoom,
-        // copy,
-        // paste,
+        copy,
+        paste,
         canvas,
         fillColor,
         strokeWidth,
@@ -686,8 +685,7 @@ export const useEditor = () => {
         setStrokeDashArray,
         fontFamily,
         setFontFamily,
-        onCopy: copy,
-        onPaste: paste,
+       
       });
     }
 
@@ -699,8 +697,8 @@ export const useEditor = () => {
     // redo,
     // save,
     autoZoom,
-    // copy,
-    // paste,
+    copy,
+    paste,
     canvas,
     fillColor,
     strokeWidth,

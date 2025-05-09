@@ -172,16 +172,23 @@ export interface EditorHookProps {
   defaultState?: string;
   defaultWidth?: number;
   defaultHeight?: number;
-  // clearSelectionCallback?: () => void;
-  // saveCallback?: (values: {
-  //   json: string;
-  //   height: number;
-  //   width: number;
-  // }) => void;
+  clearSelectionCallback?: () => void;
+  saveCallback?: (values: {
+    json: string;
+    height: number;
+    width: number;
+  }) => void;
 }
 
 export type BuildEditorProps = {
+  // undo: () => void;
+  // redo: () => void;
+  // save: (skip?: boolean) => void;
+  // canUndo: () => boolean;
+  // canRedo: () => boolean;
   autoZoom: () => void;
+  copy: () => void;
+  paste: () => void;
   canvas: fabric.Canvas;
   fillColor: string;
   strokeColor: string;
@@ -194,8 +201,6 @@ export type BuildEditorProps = {
   setStrokeColor: (value: string) => void;
   setStrokeWidth: (value: number) => void;
   setFontFamily: (value: string) => void;
-  onCopy: () => void;
-  onPaste: () => void;
 };
 
 export interface Editor {
