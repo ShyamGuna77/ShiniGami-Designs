@@ -1,5 +1,5 @@
 import { fabric } from "fabric";
-import { useCallback, useState, useMemo, useRef } from "react";
+import { useCallback, useState, useMemo} from "react";
 
 import {
   Editor,
@@ -11,34 +11,39 @@ import {
   TRIANGLE_OPTIONS,
   BuildEditorProps,
   RECTANGLE_OPTIONS,
-  EditorHookProps,
+  // EditorHookProps,
   STROKE_DASH_ARRAY,
   TEXT_OPTIONS,
   FONT_FAMILY,
   FONT_WEIGHT,
   FONT_SIZE,
+  JSON_KEYS,
 } from "@/features/editor/types";
-import { createFilter, isTextType } from "../utils";
-// import { useHistory } from "@/features/editor/hooks/use-history";
+import { createFilter, downloadFile, isTextType ,transformText } from "../utils";
+import { useHistory } from "./use-history";
 // import {
 //   createFilter,
 //   downloadFile,
 //   isTextType,
 //   transformText,
 // } from "@/features/editor/utils";
-// import { useHotkeys } from "@/features/editor/hooks/use-hotkeys";
+
 import { useClipboard } from "@/features/editor/hooks/use-clipboard";
 import useAutoResize from "./use-auto-resize";
 import { useCanvasEvents } from "@/features/editor/hooks/use-canvas-events";
 // import { useWindowEvents } from "@/features/editor/hooks/use-window-events";
 // import { useLoadState } from "@/features/editor/hooks/use-load-state";
 
+import { useHotkeys } from "./use-hotkeys";
+
+
+
 const buildEditor = ({
-  // save,
-  // undo,
-  // redo,
-  // canRedo,
-  // canUndo,
+  save,
+  undo,
+  redo,
+  canRedo,
+  canUndo,
   autoZoom,
   copy,
   paste,
@@ -55,67 +60,67 @@ const buildEditor = ({
   strokeDashArray,
   setStrokeDashArray,
 }: BuildEditorProps): Editor => {
-  // const generateSaveOptions = () => {
-  //   const { width, height, left, top } = getWorkspace() as fabric.Rect;
+  const generateSaveOptions = () => {
+    const { width, height, left, top } = getWorkspace() as fabric.Rect;
 
-  //   return {
-  //     name: "Image",
-  //     format: "png",
-  //     quality: 1,
-  //     width,
-  //     height,
-  //     left,
-  //     top,
-  //   };
-  // };
+    return {
+      name: "Image",
+      format: "png",
+      quality: 1,
+      width,
+      height,
+      left,
+      top,
+    };
+  };
 
-  // const savePng = () => {
-  //   const options = generateSaveOptions();
+  const savePng = () => {
+    const options = generateSaveOptions();
 
-  //   canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
-  //   const dataUrl = canvas.toDataURL(options);
+    canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
+    const dataUrl = canvas.toDataURL(options);
 
-  //   downloadFile(dataUrl, "png");
-  //   autoZoom();
-  // };
+    downloadFile(dataUrl, "png");
+    autoZoom();
+  };
 
-  // const saveSvg = () => {
-  //   const options = generateSaveOptions();
+  const saveSvg = () => {
+    const options = generateSaveOptions();
 
-  //   canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
-  //   const dataUrl = canvas.toDataURL(options);
+    canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
+    const dataUrl = canvas.toDataURL(options);
 
-  //   downloadFile(dataUrl, "svg");
-  //   autoZoom();
-  // };
+    downloadFile(dataUrl, "svg");
+    autoZoom();
+  };
 
-  // const saveJpg = () => {
-  //   const options = generateSaveOptions();
+  const saveJpg = () => {
+    const options = generateSaveOptions();
 
-  //   canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
-  //   const dataUrl = canvas.toDataURL(options);
+    canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
+    const dataUrl = canvas.toDataURL(options);
 
-  //   downloadFile(dataUrl, "jpg");
-  //   autoZoom();
-  // };
+    downloadFile(dataUrl, "jpg");
+    autoZoom();
+  };
 
-  // const saveJson = async () => {
-  //   const dataUrl = canvas.toJSON(JSON_KEYS);
+  const saveJson = async () => {
+    const dataUrl = canvas.toJSON(JSON_KEYS);
 
-  //   await transformText(dataUrl.objects);
-  //   const fileString = `data:text/json;charset=utf-8,${encodeURIComponent(
-  //     JSON.stringify(dataUrl, null, "\t")
-  //   )}`;
-  //   downloadFile(fileString, "json");
-  // };
+    await transformText(dataUrl.objects);
+    const fileString = `data:text/json;charset=utf-8,${encodeURIComponent(
+      JSON.stringify(dataUrl, null, "\t")
+    )}`;
+    downloadFile(fileString, "json");
+  };
 
-  // const loadJson = (json: string) => {
-  //   const data = JSON.parse(json);
+  const loadJson = (json: string) => {
+    const data = JSON.parse(json);
 
-  //   canvas.loadFromJSON(data, () => {
-  //     autoZoom();
-  //   });
-  // };
+    canvas.loadFromJSON(data, () => {
+      autoZoom();
+    });
+  };
 
   const getWorkspace = () => {
     return canvas.getObjects().find((object) => object.name === "clip");
@@ -138,13 +143,13 @@ const buildEditor = ({
   };
 
   return {
-    // savePng,
-    // saveJpg,
-    // saveSvg,
-    // saveJson,
-    // loadJson,
-    // canUndo,
-    // canRedo,
+    savePng,
+    saveJpg,
+    saveSvg,
+    saveJson,
+    loadJson,
+    canUndo,
+    canRedo,
     autoZoom,
     getWorkspace,
     zoomIn: () => {
@@ -170,7 +175,7 @@ const buildEditor = ({
 
       workspace?.set(value);
       autoZoom();
-      // save();
+      save();
     },
     changeBackground: (value: string) => {
       const workspace = getWorkspace();
@@ -188,8 +193,8 @@ const buildEditor = ({
     disableDrawingMode: () => {
       canvas.isDrawingMode = false;
     },
-    // onUndo: () => undo(),
-    // onRedo: () => redo(),
+    onUndo: () => undo(),
+    onRedo: () => redo(),
     onCopy: () => copy(),
     onPaste: () => paste(),
     changeImageFilter: (value: string) => {
@@ -612,11 +617,11 @@ export const useEditor = () => {
 
   // useWindowEvents();
 
-  // const { save, canRedo, canUndo, undo, redo, canvasHistory, setHistoryIndex } =
-  //   useHistory({
-  //     canvas,
-  //     saveCallback,
-  //   });
+  const { save, canRedo, canUndo, undo, redo, canvasHistory, setHistoryIndex } =
+    useHistory({
+      canvas,
+      // saveCallback,
+    });
 
   const { autoZoom } = useAutoResize({
     canvas,
@@ -624,20 +629,22 @@ export const useEditor = () => {
   });
 
   useCanvasEvents({
+    save,
     canvas,
     setSelectedObjects,
+    // clearSelectionCallback,
   });
 
   const { copy, paste } = useClipboard({ canvas });
 
-  // useHotkeys({
-  //   undo,
-  //   redo,
-  //   copy,
-  //   paste,
-  //   save,
-  //   canvas,
-  // });
+  useHotkeys({
+    undo,
+    redo,
+    copy,
+    paste,
+    save,
+    canvas,
+  });
 
   // useLoadState({
   //   canvas,
@@ -650,11 +657,11 @@ export const useEditor = () => {
   const editor = useMemo(() => {
     if (canvas) {
       return buildEditor({
-        // save,
-        // undo,
-        // redo,
-        // canUndo,
-        // canRedo,
+        save,
+        undo,
+        redo,
+        canUndo,
+        canRedo,
         autoZoom,
         copy,
         paste,
@@ -675,11 +682,11 @@ export const useEditor = () => {
 
     return undefined;
   }, [
-    // canRedo,
-    // canUndo,
-    // undo,
-    // redo,
-    // save,
+    canRedo,
+    canUndo,
+    undo,
+    redo,
+    save,
     autoZoom,
     copy,
     paste,
@@ -690,8 +697,6 @@ export const useEditor = () => {
     selectedObjects,
     strokeDashArray,
     fontFamily,
-    copy,
-    paste,
   ]);
 
   const init = useCallback(
@@ -735,13 +740,13 @@ export const useEditor = () => {
       setCanvas(initialCanvas);
       setContainer(initialContainer);
 
-      // const currentState = JSON.stringify(initialCanvas.toJSON(JSON_KEYS));
-      // canvasHistory.current = [currentState];
-      // setHistoryIndex(0);
+      const currentState = JSON.stringify(initialCanvas.toJSON(JSON_KEYS));
+      canvasHistory.current = [currentState];
+      setHistoryIndex(0);
     },
     [
-      // canvasHistory, // No need, this is from useRef
-      // setHistoryIndex, // No need, this is from useState
+      canvasHistory, // No need, this is from useRef
+      setHistoryIndex, // No need, this is from useState
     ]
   );
 

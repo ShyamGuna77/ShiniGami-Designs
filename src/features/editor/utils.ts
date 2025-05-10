@@ -1,30 +1,31 @@
 
 
-// import { uuid } from "uuidv4";
+import { v4 as uuidv4 } from "uuid";
+
 import { fabric } from "fabric";
 import type { RGBColor } from "react-color";
 
-// export function transformText(objects: any) {
-//   if (!objects) return;
+export function transformText(objects: any) {
+  if (!objects) return;
 
-//   objects.forEach((item: any) => {
-//     if (item.objects) {
-//       transformText(item.objects);
-//     } else {
-//       item.type === "text" && item.type === "textbox";
-//     }
-//   });
-// }
+  objects.forEach((item: any) => {
+    if (item.objects) {
+      transformText(item.objects);
+    } else {
+      item.type === "text" && (item.type === "textbox");
+    }
+  });
+}
 
-// export function downloadFile(file: string, type: string) {
-//   const anchorElement = document.createElement("a");
+export function downloadFile(file: string, type: string) {
+  const anchorElement = document.createElement("a");
 
-//   anchorElement.href = file;
-//   anchorElement.download = `${uuid()}.${type}`;
-//   document.body.appendChild(anchorElement);
-//   anchorElement.click();
-//   anchorElement.remove();
-// }
+  anchorElement.href = file;
+  anchorElement.download = `${uuidv4()}.${type}`;
+  document.body.appendChild(anchorElement);
+  anchorElement.click();
+  anchorElement.remove();
+}
 
 export function isTextType(type: string | undefined) {
   return type === "text" || type === "i-text" || type === "textbox";

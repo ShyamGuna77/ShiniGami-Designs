@@ -181,11 +181,11 @@ export interface EditorHookProps {
 }
 
 export type BuildEditorProps = {
-  // undo: () => void;
-  // redo: () => void;
-  // save: (skip?: boolean) => void;
-  // canUndo: () => boolean;
-  // canRedo: () => boolean;
+  undo: () => void;
+  redo: () => void;
+  save: (skip?: boolean) => void;
+  canUndo: () => boolean;
+  canRedo: () => boolean;
   autoZoom: () => void;
   copy: () => void;
   paste: () => void;
