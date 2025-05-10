@@ -12,6 +12,7 @@ export function transformText(objects: any) {
     if (item.objects) {
       transformText(item.objects);
     } else {
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       item.type === "text" && (item.type === "textbox");
     }
   });
