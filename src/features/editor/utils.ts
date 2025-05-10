@@ -1,5 +1,4 @@
-
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { v4 as uuidv4 } from "uuid";
 
 import { fabric } from "fabric";
@@ -8,12 +7,13 @@ import type { RGBColor } from "react-color";
 export function transformText(objects: any) {
   if (!objects) return;
 
+
   objects.forEach((item: any) => {
     if (item.objects) {
       transformText(item.objects);
     } else {
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      item.type === "text" && (item.type === "textbox");
+      item.type === "text" && item.type === "textbox";
     }
   });
 }
@@ -50,14 +50,14 @@ export const createFilter = (value: string) => {
       effect = new fabric.Image.filters.Grayscale();
       break;
     case "polaroid":
-      // @ts-ignore
+      // @ts-expect-error  typescript wierd errpr
       effect = new fabric.Image.filters.Polaroid();
       break;
     case "sepia":
       effect = new fabric.Image.filters.Sepia();
       break;
     case "kodachrome":
-      // @ts-ignore
+      // @ts-expect-error Fabric.js types are incomplete for Kodachrome filter
       effect = new fabric.Image.filters.Kodachrome();
       break;
     case "contrast":
@@ -67,15 +67,15 @@ export const createFilter = (value: string) => {
       effect = new fabric.Image.filters.Brightness({ brightness: 0.8 });
       break;
     case "brownie":
-      // @ts-ignore
+      // @ts-expect-error Fabric.js types are incomplete for Brownie filter
       effect = new fabric.Image.filters.Brownie();
       break;
     case "vintage":
-      // @ts-ignore
+      // @ts-expect-error Fabric.js types are incomplete for Vintage filter
       effect = new fabric.Image.filters.Vintage();
       break;
     case "technicolor":
-      // @ts-ignore
+      // @ts-expect-error Fabric.js types are incomplete for Technicolor filter
       effect = new fabric.Image.filters.Technicolor();
       break;
     case "pixelate":
@@ -98,18 +98,18 @@ export const createFilter = (value: string) => {
       });
       break;
     case "removecolor":
-      // @ts-ignore
+      // @ts-expect-error Fabric.js types are incomplete for RemoveColor filter
       effect = new fabric.Image.filters.RemoveColor({
         threshold: 0.2,
         distance: 0.5,
       });
       break;
     case "blacknwhite":
-      // @ts-ignore
+      // @ts-expect-error Fabric.js types are incomplete for BlackWhite filter
       effect = new fabric.Image.filters.BlackWhite();
       break;
     case "vibrance":
-      // @ts-ignore
+      // @ts-expect-error Fabric.js types are incomplete for Vibrance filter
       effect = new fabric.Image.filters.Vibrance({
         vibrance: 1,
       });
@@ -129,7 +129,7 @@ export const createFilter = (value: string) => {
       effect = new fabric.Image.filters.Resize();
       break;
     case "gamma":
-      // @ts-ignore
+      // @ts-expect-error Fabric.js types are incomplete for Gamma filter
       effect = new fabric.Image.filters.Gamma({
         gamma: [1, 0.5, 2.1],
       });
