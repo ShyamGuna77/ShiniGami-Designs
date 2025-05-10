@@ -1,7 +1,11 @@
 
 import { Button } from "@/components/ui/button";
+import { auth } from "@/auth";
 import Link from "next/link";
-export default function Home() {
+
+
+export default async function Home() {
+  const session = await auth();
   return (
     <div>
       <Link href = "/editor/123">
@@ -9,6 +13,9 @@ export default function Home() {
      >Click Me
      </Button>
       </Link>
+  
+      {JSON.stringify(session)}
+
   
     </div>
   );
