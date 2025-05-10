@@ -31,7 +31,7 @@ import { useHistory } from "./use-history";
 import { useClipboard } from "@/features/editor/hooks/use-clipboard";
 import useAutoResize from "./use-auto-resize";
 import { useCanvasEvents } from "@/features/editor/hooks/use-canvas-events";
-// import { useWindowEvents } from "@/features/editor/hooks/use-window-events";
+import { useWindowEvents } from "./use-window";
 // import { useLoadState } from "@/features/editor/hooks/use-load-state";
 
 import { useHotkeys } from "./use-hotkeys";
@@ -615,7 +615,7 @@ export const useEditor = () => {
   const [strokeDashArray, setStrokeDashArray] =
     useState<number[]>(STROKE_DASH_ARRAY);
 
-  // useWindowEvents();
+  useWindowEvents();
 
   const { save, canRedo, canUndo, undo, redo, canvasHistory, setHistoryIndex } =
     useHistory({
@@ -745,8 +745,8 @@ export const useEditor = () => {
       setHistoryIndex(0);
     },
     [
-      canvasHistory, // No need, this is from useRef
-      setHistoryIndex, // No need, this is from useState
+      canvasHistory, 
+      setHistoryIndex, 
     ]
   );
 
