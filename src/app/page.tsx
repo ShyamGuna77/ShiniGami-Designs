@@ -1,11 +1,13 @@
 
 import { Button } from "@/components/ui/button";
-import { auth } from "@/auth";
+import { protectServer } from "@/features/auth/utils";
 import Link from "next/link";
 
 
 export default async function Home() {
-  const session = await auth();
+
+   await protectServer();
+  
   return (
     <div>
       <Link href = "/editor/123">
@@ -14,7 +16,7 @@ export default async function Home() {
      </Button>
       </Link>
   
-      {JSON.stringify(session)}
+      <p>You are logged in</p>
 
   
     </div>
