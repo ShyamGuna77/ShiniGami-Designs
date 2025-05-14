@@ -5,7 +5,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { client } from "@/lib/hono";
 
 type ResponseType = InferResponseType<
-  //ts-expect-error error with client
+  
   (typeof client.api.projects)[":id"]["$patch"],
   200
 >;

@@ -1,17 +1,17 @@
-import { redirect } from "next/navigation";
-import { auth } from "@/auth";
+import { protectServer } from "@/features/auth/utils";
+
+import { Banner } from "./banner";
+import { ProjectsSection } from "./project-section";
+import { TemplatesSection } from "./template-section";
 
 export default async function Home() {
-  const session = await auth();
-
-  if (!session) {
-    redirect("/sign-in");
-  }
+  await protectServer();
 
   return (
-    <div>
-      <p>You are logged in</p>
-      {JSON.stringify(session)}
+    <div className="flex flex-col space-y-6 max-w-screen-xl mx-auto pb-10">
+      <Banner />
+      <TemplatesSection />
+      <ProjectsSection />
     </div>
   );
 }
