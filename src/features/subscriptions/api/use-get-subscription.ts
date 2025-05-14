@@ -2,15 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 
 import { client } from "@/lib/hono";
 
-export const useGetImages = () => {
+export const useGetSubscription = () => {
   const query = useQuery({
-    queryKey: ["images"],
+    queryKey: ["subscription"],
     queryFn: async () => {
       //@ts-expect-error - TODO: fix this
-      const response = await client.api.images.$get();
+      const response = await client.api.subscriptions.current.$get();
 
       if (!response.ok) {
-        throw new Error("Failed to fetch images");
+        throw new Error("Something went wrong");
       }
 
       const { data } = await response.json();

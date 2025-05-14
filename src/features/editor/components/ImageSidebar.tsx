@@ -49,7 +49,7 @@ export const ImageSidebar = ({
             allowedContent: "text-xs text-gray-500 mt-1 text-center",
           }}
           content={{
-            button: ".",
+            button: "Upload Image",
           }}
           endpoint="imageUploader"
           onClientUploadComplete={(res) => {

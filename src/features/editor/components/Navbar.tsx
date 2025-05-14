@@ -88,9 +88,37 @@ export const Navbar = ({
             >
               <CiFileOn className="size-8" />
               <div>
-                <p>Open</p>
+                <p>Open JSON</p>
                 <p className="text-xs text-muted-foreground">
                   Open a JSON file
+                </p>
+              </div>
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => {
+                const input = document.createElement("input");
+                input.type = "file";
+                input.accept = "image/png,image/jpeg,image/jpg";
+                input.onchange = (e) => {
+                  const file = (e.target as HTMLInputElement).files?.[0];
+                  if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                      const imageUrl = event.target?.result as string;
+                      editor?.addImage(imageUrl);
+                    };
+                    reader.readAsDataURL(file);
+                  }
+                };
+                input.click();
+              }}
+              className="flex items-center gap-x-2"
+            >
+              <CiFileOn className="size-8" />
+              <div>
+                <p>Open Image</p>
+                <p className="text-xs text-muted-foreground">
+                  Open PNG, JPEG, or JPG files
                 </p>
               </div>
             </DropdownMenuItem>

@@ -10,12 +10,12 @@ import subscriptions from "./subscriptions";
 
 import authConfig from "@/auth.config";
 
-// Revert to "edge" if planning on running on the edge
+
 export const runtime = "nodejs";
 
 function getAuthConfig(): AuthConfig {
   return {
-    secret: process.env.AUTH_SECRET || "your-fallback-secret-key",
+    secret: process.env.AUTH_SECRET || "or random String",
     ...authConfig,
   };
 }
