@@ -6,7 +6,7 @@ import ai from "./ai";
 import users from "./users";
 import images from "./images";
 import projects from "./projects";
-// import subscriptions from "./subscriptions";
+import subscriptions from "./subscriptions";
 
 import authConfig from "@/auth.config";
 
@@ -24,7 +24,11 @@ const app = new Hono().basePath("/api");
 
 app.use("*", initAuthConfig(getAuthConfig));
 
-app.route("/ai", ai).route("/users", users).route("/images", images).route("/projects", projects);
+app.route("/ai", ai)
+.route("/users", users)
+.route("/images", images)
+.route("/projects", projects)
+.route("/subscriptions", subscriptions);
 
 export const GET = handle(app);
 export const POST = handle(app);

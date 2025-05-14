@@ -15,6 +15,13 @@
       "when": 1747189102385,
       "tag": "0001_kind_reaper",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1747204702589,
+      "tag": "0002_puzzling_alex_power",
+      "breakpoints": true
     }
   ]
 }
