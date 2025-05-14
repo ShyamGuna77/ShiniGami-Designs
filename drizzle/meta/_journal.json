@@ -8,6 +8,13 @@
       "when": 1746861047963,
       "tag": "0000_famous_living_lightning",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1747189102385,
+      "tag": "0001_kind_reaper",
+      "breakpoints": true
     }
   ]
 }

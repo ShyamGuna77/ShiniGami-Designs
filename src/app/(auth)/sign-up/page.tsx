@@ -1,10 +1,6 @@
-
-
 import { redirect } from "next/navigation";
-
-import { SignUpCard } from "@/features/auth/components/Sign-upCard";
-
 import { auth } from "@/auth";
+import { SignUpCard } from "@/features/auth/components/Sign-upCard";
 
 const SignUpPage = async () => {
   const session = await auth();
