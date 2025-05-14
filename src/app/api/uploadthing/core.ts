@@ -27,9 +27,10 @@
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { UploadThingError } from "uploadthing/server";
 
+import { auth } from "@/auth";
 const f = createUploadthing();
 
-const auth = (req: Request) => ({ id: "fakeId" }); // Fake auth function
+
 
 // FileRouter for your app, can contain multiple FileRoutes
 export const ourFileRouter = {
@@ -42,14 +43,15 @@ export const ourFileRouter = {
   })
     
     .middleware(async ({ req }) => {
+      const session = await auth();
      
-      const user = await auth(req);
+      const user = session?.user;
 
       
       if (!user) throw new UploadThingError("Unauthorized");
 
   
-      return { userId: user.id };
+      return { userId: session?.user?.id };
     })
     .onUploadComplete(async ({ metadata, file }) => {
      

@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { Hono } from "hono";
-// import { verifyAuth } from "@hono/auth-js";
+import { verifyAuth } from "@hono/auth-js";
 import { zValidator } from "@hono/zod-validator";
 
 import { replicate } from "@/lib/replicate";
@@ -8,7 +8,7 @@ import { replicate } from "@/lib/replicate";
 const app = new Hono()
   .post(
     "/remove-bg",
-    // verifyAuth(),
+    verifyAuth(),
     zValidator(
       "json",
       z.object({
@@ -23,8 +23,8 @@ const app = new Hono()
           return c.json({ error: "No image provided" }, 400);
         }
 
-        if (!process.env.REMOVE_BG) {
-          return c.json({ error: "REMOVE_BG API key is not configured" }, 500);
+        if (!process.env.REMOVE_BG_API_KEY) {
+          return c.json({ error: "Remove.bg API key is not configured" }, 500);
         }
 
         const cleanedBase64 = image.replace(/^data:image\/\w+;base64,/, "");
@@ -32,7 +32,7 @@ const app = new Hono()
         const response = await fetch("https://api.remove.bg/v1.0/removebg", {
           method: "POST",
           headers: {
-            "X-Api-Key": process.env.REMOVE_BG,
+            "X-Api-Key": process.env.REMOVE_BG_API_KEY,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
@@ -62,7 +62,7 @@ const app = new Hono()
   )
   .post(
     "/generate-image",
-    // verifyAuth(),
+    verifyAuth(),
     zValidator(
       "json",
       z.object({
