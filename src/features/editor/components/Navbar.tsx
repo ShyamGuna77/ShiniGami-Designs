@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client ";
 
 
@@ -24,7 +25,7 @@ import Logo from "./Logo";
 
 import { Button } from "@/components/ui/button";
 import { CiFileOn } from "react-icons/ci";
-
+import { UserButton } from "@/features/auth/components/user-button";
 
 
 interface NavbarProps {
@@ -180,6 +181,10 @@ const Navbar = ({editor,activeTool,onChangeActiveTool} :NavbarProps) => {
               </DropdownMenuContent>
             </DropdownMenu>
         {/* Add Todo Button  */}
+
+        <UserButton />
+
+        
           </div>
         </div>
       </nav>

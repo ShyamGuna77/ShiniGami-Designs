@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
-
+import { SessionProvider } from "next-auth/react";
+import { auth } from "@/auth";
 import { Toaster } from "sonner";
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,19 +20,23 @@ export const metadata: Metadata = {
   description: "ShiniGami Designs is a canvas Based Studio",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
   return (
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Providers>
-          <Toaster />
-          {children}</Providers>
+          <SessionProvider session={session}>
+            <Toaster />
+            {children}
+          </SessionProvider>
+        </Providers>
       </body>
     </html>
   );
