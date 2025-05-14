@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { fabric } from "fabric";
-import { useCallback, useState, useMemo} from "react";
+import { useCallback, useState, useMemo, useRef } from "react";
 
 import {
   Editor,
@@ -11,7 +12,7 @@ import {
   TRIANGLE_OPTIONS,
   BuildEditorProps,
   RECTANGLE_OPTIONS,
-  // EditorHookProps,
+  EditorHookProps,
   STROKE_DASH_ARRAY,
   TEXT_OPTIONS,
   FONT_FAMILY,
@@ -21,18 +22,13 @@ import {
 } from "@/features/editor/types";
 import { createFilter, downloadFile, isTextType ,transformText } from "../utils";
 import { useHistory } from "./use-history";
-// import {
-//   createFilter,
-//   downloadFile,
-//   isTextType,
-//   transformText,
-// } from "@/features/editor/utils";
+
 
 import { useClipboard } from "@/features/editor/hooks/use-clipboard";
 import useAutoResize from "./use-auto-resize";
 import { useCanvasEvents } from "@/features/editor/hooks/use-canvas-events";
 import { useWindowEvents } from "./use-window";
-// import { useLoadState } from "@/features/editor/hooks/use-load-state";
+import { useLoadState } from "./use-loadstate";
 
 import { useHotkeys } from "./use-hotkeys";
 
@@ -599,10 +595,10 @@ const buildEditor = ({
   };
 };
 
-export const useEditor = () => {
-  // const initialState = useRef(defaultState);
-  // const initialWidth = useRef(defaultWidth);
-  // const initialHeight = useRef(defaultHeight);
+export const useEditor = ({defaultState, defaultWidth, defaultHeight, clearSelectionCallback, saveCallback}: EditorHookProps) => {
+  const initialState = useRef(defaultState);
+  const initialWidth = useRef(defaultWidth);
+  const initialHeight = useRef(defaultHeight);
 
   const [canvas, setCanvas] = useState<fabric.Canvas | null>(null);
   const [container, setContainer] = useState<HTMLDivElement | null>(null);
@@ -620,7 +616,7 @@ export const useEditor = () => {
   const { save, canRedo, canUndo, undo, redo, canvasHistory, setHistoryIndex } =
     useHistory({
       canvas,
-      // saveCallback,
+      saveCallback,
     });
 
   const { autoZoom } = useAutoResize({
@@ -632,7 +628,7 @@ export const useEditor = () => {
     save,
     canvas,
     setSelectedObjects,
-    // clearSelectionCallback,
+    clearSelectionCallback,
   });
 
   const { copy, paste } = useClipboard({ canvas });
@@ -646,13 +642,13 @@ export const useEditor = () => {
     canvas,
   });
 
-  // useLoadState({
-  //   canvas,
-  //   autoZoom,
-  //   initialState,
-  //   canvasHistory,
-  //   setHistoryIndex,
-  // });
+  useLoadState({
+    canvas,
+    autoZoom,
+    initialState,
+    canvasHistory,
+    setHistoryIndex,
+  });
 
   const editor = useMemo(() => {
     if (canvas) {
