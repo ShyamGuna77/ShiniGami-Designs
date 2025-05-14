@@ -13,5 +13,19 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   pages: {
     signIn:"/sign-in",
     error: "/sign-in"
+  },
+  session: {
+    strategy: "jwt",
+  },
+  secret: process.env.NEXTAUTH_SECRET,
+  callbacks: {
+    jwt({token, user}){
+      if(user){
+        token.id = user.id;
+      }
+      return token;
+    },
+    
+    
   }
 });
