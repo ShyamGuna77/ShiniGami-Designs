@@ -77,19 +77,28 @@ export const TemplatesSection = () => {
     <div>
       <h3 className="font-semibold text-lg">Start from a template</h3>
       <div className="grid grid-cols-2 md:grid-cols-4 mt-4 gap-4">
-        {data?.map((template: { id: Key | null | undefined; name: string; thumbnailUrl: any; width: number; height: number; isPro: boolean | null; }) => (
-          <TemplateCard
-            key={template.id}
-            title={template.name}
-            imageSrc={template.thumbnailUrl || ""}
-            onClick={() => onClick(template)}
-            disabled={mutation.isPending}
-            description={`${template.width} x ${template.height} px`}
-            width={template.width}
-            height={template.height}
-            isPro={template.isPro}
-          />
-        ))}
+        {data?.map(
+          (template: {
+            id: Key | null | undefined;
+            name: string;
+            thumbnailUrl: any;
+            width: number;
+            height: number;
+            isPro: boolean | null;
+          }) => (
+            <TemplateCard
+              key={template.id}
+              title={template.name}
+              imageSrc={template.thumbnailUrl || ""}
+              onClick={() => onClick(template)}
+              disabled={mutation.isPending}
+              description={`${template.width} x ${template.height} px`}
+              width={template.width}
+              height={template.height}
+              isPro={template.isPro}
+            />
+          )
+        )}
       </div>
     </div>
   );
