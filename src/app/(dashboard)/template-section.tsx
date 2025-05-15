@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useRouter } from "next/navigation";
@@ -12,6 +13,7 @@ import {
 import { useCreateProject } from "@/features/projects/api/use-create-project";
 
 import { TemplateCard } from "./template-card";
+import { Key } from "react";
 
 export const TemplatesSection = () => {
   const { shouldBlock, triggerPaywall } = usePaywall();
@@ -75,7 +77,7 @@ export const TemplatesSection = () => {
     <div>
       <h3 className="font-semibold text-lg">Start from a template</h3>
       <div className="grid grid-cols-2 md:grid-cols-4 mt-4 gap-4">
-        {data?.map((template) => (
+        {data?.map((template: { id: Key | null | undefined; name: string; thumbnailUrl: any; width: number; height: number; isPro: boolean | null; }) => (
           <TemplateCard
             key={template.id}
             title={template.name}

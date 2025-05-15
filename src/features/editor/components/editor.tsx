@@ -23,7 +23,7 @@ import { AiSidebar } from "./AisideBar";
 import { RemoveBgSidebar } from "./Removebg";
 import { DrawSidebar } from "./DrawSidebar";
 import { SettingsSidebar } from "./SettingsSidebar";
-
+import { TemplateSidebar } from "./TemplateSidebar";
 import { useUpdateProject } from "@/features/projects/api/use-update-project";
 import { ResponseType } from "@/features/projects/api/use-get-project";
 
@@ -148,6 +148,12 @@ export const Editor = ({ initialData }: EditorProps) => {
           />
 
           <ImageSidebar
+            editor={editor}
+            activeTool={activeTool}
+            onChangeActiveTool={onChangeActiveTool}
+          />
+
+          <TemplateSidebar
             editor={editor}
             activeTool={activeTool}
             onChangeActiveTool={onChangeActiveTool}
