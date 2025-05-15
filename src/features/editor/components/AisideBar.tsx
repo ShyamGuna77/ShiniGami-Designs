@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ActiveTool,Editor } from "../types";
 import { ToolSidebarClose } from "./ToolSideBarclose";
 import { ToolSidebarHeader } from "./ToolSideBarHeader";
+import { usePaywall } from "@/features/subscriptions/hooks/use-paywall";
 
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -23,7 +24,7 @@ export const AiSidebar = ({
   activeTool,
   onChangeActiveTool,
 }: AiSidebarProps) => {
-
+  const { shouldBlock, triggerPaywall } = usePaywall();
   const mutation = useGenerateImage();
 
   const [value, setValue] = useState("");
@@ -31,10 +32,10 @@ export const AiSidebar = ({
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // if (shouldBlock) {
-    //   triggerPaywall();
-    //   return;
-    // }
+    if (shouldBlock) {
+      triggerPaywall();
+      return;
+    }
 
     mutation.mutate(
       { prompt: value },
@@ -62,7 +63,7 @@ export const AiSidebar = ({
         <form onSubmit={onSubmit} className="p-4 space-y-6">
           <Textarea
             disabled={mutation.isPending}
-            placeholder="An astronaut riding a horse on mars, hd, dramatic lighting"
+            placeholder="If image is not generated, then i've removed the Api key, clone project try you Api in env "
             cols={30}
             rows={10}
             required

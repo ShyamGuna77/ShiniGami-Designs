@@ -1,17 +1,11 @@
-import { protectServer } from "@/features/auth/utils";
-
-import { Banner } from "./banner";
-import { ProjectsSection } from "./project-section";
-import { TemplatesSection } from "./template-section";
-
-export default async function Home() {
-  await protectServer();
-
+import React from 'react'
+import Link from 'next/link'
+const page = () => {
   return (
-    <div className="flex flex-col space-y-6 max-w-screen-xl mx-auto pb-10">
-      <Banner />
-      <TemplatesSection />
-      <ProjectsSection />
+    <div>
+      <Link href="/landing">Landing</Link>
     </div>
-  );
+  )
 }
+
+export default page

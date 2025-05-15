@@ -28,7 +28,7 @@ export const FailModal = () => {
     <Dialog open={isOpen} onOpenChange={handleClose}>
       <DialogContent>
         <DialogHeader className="flex items-center space-y-4">
-          <Image src="/logo.svg" alt="Logo" width={36} height={36} />
+          <Image src="/seven.svg" alt="Seven" width={36} height={36} />
           <DialogTitle className="text-center">
             Something went wrong
           </DialogTitle>

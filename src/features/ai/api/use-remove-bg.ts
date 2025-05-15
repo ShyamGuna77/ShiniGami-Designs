@@ -13,13 +13,16 @@ export const useRemoveBg = () => {
   const mutation = useMutation<ResponseType, Error, RequestType>({
     mutationFn: async (json) => {
       try {
-        const response = await fetch("http://localhost:3000/api/ai/remove-bg", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(json),
-        });
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_APP_URL}/api/ai/remove-bg`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(json),
+          }
+        );
 
         const data = await response.json();
 
