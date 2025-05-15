@@ -104,6 +104,7 @@ const app = new Hono()
         process.env.STRIPE_WEBHOOK_SECRET!
       );
     } catch (error) {
+      console.error(error);
       return c.json({ error: "Invalid signature" }, 400);
     }
 
@@ -124,6 +125,7 @@ const app = new Hono()
         subscriptionId: subscription.id,
         customerId: subscription.customer as string,
         priceId: subscription.items.data[0].price.product as string,
+        //@ts-expect-error - current_period_end is not typed
         currentPeriodEnd: new Date(subscription.current_period_end * 1000),
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -143,6 +145,7 @@ const app = new Hono()
         .update(subscriptions)
         .set({
           status: subscription.status,
+          //@ts-expect-error - current_period_end is not typed
           currentPeriodEnd: new Date(subscription.current_period_end * 1000),
           updatedAt: new Date(),
         })
@@ -151,5 +154,6 @@ const app = new Hono()
 
     return c.json(null, 200);
   });
+
 
 export default app;
