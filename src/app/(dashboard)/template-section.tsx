@@ -22,7 +22,7 @@ export const TemplatesSection = () => {
 
   const { data, isLoading, isError } = useGetTemplates({
     page: "1",
-    limit: "4",
+    limit: "8",
   });
 
   const onClick = (template: ResponseType["data"][0]) => {
