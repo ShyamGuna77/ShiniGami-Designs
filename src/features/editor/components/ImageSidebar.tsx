@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Image from "next/image";
 import Link from "next/link";
 import { AlertTriangle, Loader } from "lucide-react";
@@ -11,6 +12,9 @@ import { useGetImages } from "@/features/images/api/use-get-images";
 import { cn } from "@/lib/utils";
 import { UploadButton } from "@/lib/uploadthing";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
+import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal } from "react";
+import { UrlObject } from "url";
 
 interface ImageSidebarProps {
   editor: Editor | undefined;
@@ -75,7 +79,7 @@ export const ImageSidebar = ({
           <div className="p-4">
             <div className="grid grid-cols-2 gap-4">
               {data &&
-                data.map((image) => {
+                data.map((image: { urls: { regular: string; small: string | StaticImport; }; id: Key | null | undefined; alt_description: any; links: { html: string | UrlObject; }; user: { name: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; }; }) => {
                   return (
                     <button
                       onClick={() => editor?.addImage(image.urls.regular)}
