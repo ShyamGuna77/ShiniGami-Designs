@@ -6,7 +6,7 @@ import { CircleText } from "@/app/landing/items/card-text";
 import { FeatureCard } from "@/app/landing/items/feature-card";
 import { PricingCard } from "@/app/landing/items/pricing-card";
 
-import { FeatureShowcase } from "@/app/landing/items/feature-showcase"; 
+import { FeatureShowcase } from "@/app/landing/items/feature-showcase";
 import Foooter from "./foooter";
 import { Button } from "@/components/ui/button";
 import { AnimatedSection } from "@/app/landing/items/animated-section";
@@ -106,19 +106,19 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-950">
         <FloatingShapes />
-        <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
-          <div className="relative z-10 grid gap-12 lg:grid-cols-2 lg:gap-8 xl:gap-16">
-            <div className="flex flex-col justify-center space-y-8">
+        <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 py-16 sm:py-24 lg:py-32">
+          <div className="relative z-10 grid gap-8 sm:gap-12 lg:grid-cols-2 lg:gap-8 xl:gap-16">
+            <div className="flex flex-col justify-center space-y-6 sm:space-y-8">
               <div className="relative">
                 <CircleText text="Design without limits • Create with ease • " />
                 <AnimatedSection>
-                  <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl md:text-6xl">
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 dark:text-white">
                     Design Like a Pro, Without the Learning Curve
                   </h1>
                 </AnimatedSection>
               </div>
               <AnimatedSection delay={0.2}>
-                <p className="max-w-2xl text-xl text-gray-600 dark:text-gray-300">
+                <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-2xl">
                   Your AI-powered graphic editor to create beautiful visuals in
                   minutes.
                 </p>
@@ -126,39 +126,39 @@ export default function Home() {
               <AnimatedSection delay={0.4}>
                 <div className="flex flex-wrap gap-4">
                   <Link href="/landing">
-                  <Button size="lg" className="rounded-full">
-                    Start Designing
-                  </Button>
+                    <Button size="lg" className="rounded-full w-full sm:w-auto">
+                      Start Designing
+                    </Button>
                   </Link>
-                  <a href="#pricing">
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="rounded-full border-gray-300 dark:border-gray-700"
-                  >
-                    View Pricing
-                  </Button>
+                  <a href="#pricing" className="w-full sm:w-auto">
+                    <Button
+                      variant="outline"
+                      size="lg"
+                      className="rounded-full border-gray-300 dark:border-gray-700 w-full"
+                    >
+                      View Pricing
+                    </Button>
                   </a>
                 </div>
               </AnimatedSection>
             </div>
             <AnimatedSection
-              className="relative flex items-center justify-center"
+              className="relative flex items-center justify-center mt-8 lg:mt-0"
               delay={0.3}
             >
-              <div className="relative w-full max-w-3xl lg:max-w-5xl">
-                <div className="overflow-hidden rounded-3xl">
+              <div className="relative w-full h-full">
+                <div className="overflow-hidden rounded-3xl shadow-2xl">
                   <Image
                     src="/canva.png"
                     alt="Design Editor Interface"
-                    width={2000}
-                    height={1500}
-                    className="w-full object-cover transform hover:scale-105 transition-transform duration-500"
+                    width={5400}
+                    height={1800}
+                    className="w-full h-full border-2 border-gray-300 object-cover transform hover:scale-105 transition-transform duration-500"
                     priority
                   />
                 </div>
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-transparent via-transparent to-white/90 dark:to-black/90" />
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-transparent via-transparent to-white/90 dark:to-black/90" />
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-transparent via-transparent to-white/80 dark:to-black/80" />
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-transparent via-transparent to-white/80 dark:to-black/80" />
               </div>
             </AnimatedSection>
           </div>
@@ -262,7 +262,10 @@ export default function Home() {
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="bg-white py-24 dark:bg-gray-900 sm:py-32">
+      <section
+        id="pricing"
+        className="bg-white py-24 dark:bg-gray-900 sm:py-32"
+      >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
@@ -346,10 +349,10 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-     <Testimonals />
+      <Testimonals />
 
       {/* CTA Section */}
-     <CtaSection />
+      <CtaSection />
 
       {/* Footer */}
       <Foooter />
