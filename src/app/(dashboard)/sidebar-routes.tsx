@@ -32,11 +32,11 @@ export const SidebarRoutes = () => {
     <div className="flex flex-col gap-y-4 flex-1">
       {shouldBlock && !isLoading && (
         <>
-          <div className="px-3">
+          <div className="px-3 md:px-4">
             <Button
               onClick={() => mutation.mutate()}
               disabled={mutation.isPending}
-              className="w-full rounded-xl border-none hover:bg-white hover:opacity-75 transition"
+              className="w-full rounded-xl border-none bg-gray-900 text-white hover:bg-gray-800 transition-all duration-200 hover:scale-[1.02] shadow-md"
               variant="outline"
               size="lg"
             >
@@ -44,12 +44,12 @@ export const SidebarRoutes = () => {
               Upgrade to Pro
             </Button>
           </div>
-          <div className="px-3">
-            <Separator />
+          <div className="px-3 md:px-4">
+            <Separator className="bg-gray-200" />
           </div>
         </>
       )}
-      <ul className="flex flex-col gap-y-1 px-3">
+      <ul className="flex flex-col gap-y-1 px-3 md:px-4">
         <SidebarItem
           href="/"
           icon={Home}
@@ -57,10 +57,10 @@ export const SidebarRoutes = () => {
           isActive={pathname === "/"}
         />
       </ul>
-      <div className="px-3">
-        <Separator />
+      <div className="px-3 md:px-4">
+        <Separator className="bg-gray-200" />
       </div>
-      <ul className="flex flex-col gap-y-1 px-3">
+      <ul className="flex flex-col gap-y-1 px-3 md:px-4">
         <SidebarItem
           href={pathname}
           icon={CreditCard}

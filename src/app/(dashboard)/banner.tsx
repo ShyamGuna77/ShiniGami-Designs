@@ -28,17 +28,17 @@ export const Banner = () => {
   };
 
   return (
-    <div className="text-white aspect-[5/1] min-h-[248px] flex gap-x-6 p-6 items-center rounded-xl bg-gradient-to-r from-gray-800 via-gray-700 to-gray-600">
-      <div className="rounded-full size-28 items-center justify-center bg-white/10 hidden md:flex">
-        <div className="rounded-full size-20 flex items-center justify-center bg-white/20">
-          <Sparkles className="h-20 text-white fill-white" />
+    <div className="text-white aspect-[5/1] min-h-[200px] md:min-h-[248px] flex flex-col md:flex-row gap-y-6 md:gap-x-8 p-6 md:p-8 items-center rounded-2xl bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 shadow-lg">
+      <div className="rounded-full size-24 md:size-32 items-center justify-center bg-white/5 hidden md:flex backdrop-blur-sm">
+        <div className="rounded-full size-20 md:size-24 flex items-center justify-center bg-white/10">
+          <Sparkles className="h-20 md:h-24 text-white fill-white" />
         </div>
       </div>
-      <div className="flex flex-col gap-y-2">
-        <h1 className="text-xl md:text-3xl font-semibold">
+      <div className="flex flex-col gap-y-3 text-center md:text-left">
+        <h1 className="text-xl md:text-3xl lg:text-4xl font-bold tracking-tight">
           Transform Visual Input into Intelligent Design
         </h1>
-        <p className="text-xs md:text-sm mb-2 text-gray-200">
+        <p className="text-sm md:text-base mb-4 text-white/80 max-w-2xl">
           Upload images or explore our built-in library. Generate
           production-ready code from visual references with ease.
         </p>
@@ -46,7 +46,7 @@ export const Banner = () => {
           disabled={mutation.isPending}
           onClick={onClick}
           variant="secondary"
-          className="w-[160px] bg-white/10 hover:bg-white/20 text-white border-none"
+          className="w-full md:w-[180px] bg-white hover:bg-white/90 text-gray-900 border-none shadow-md transition-all duration-200 hover:scale-105"
         >
           Start creating
           <ArrowRight className="size-4 ml-2" />

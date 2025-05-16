@@ -20,7 +20,7 @@ export const SuccessModal = () => {
   const { isOpen, onClose } = useSuccessModal();
 
   const handleClose = () => {
-    router.replace("/landing");
+    router.push("/landing");
     onClose();
   };
 
@@ -30,7 +30,7 @@ export const SuccessModal = () => {
         <DialogHeader className="flex items-center space-y-4">
           <Image src="/seven.svg" alt="Logo" width={36} height={36} />
           <DialogTitle className="text-center">
-            Subscription successfull!
+            Subscription successful!
           </DialogTitle>
           <DialogDescription className="text-center">
             You have successfully subscribed to our service

@@ -128,6 +128,7 @@ export default function Home() {
                     Start Designing
                   </Button>
                   </Link>
+                  <a href="/pricing">
                   <Button
                     variant="outline"
                     size="lg"
@@ -135,6 +136,7 @@ export default function Home() {
                   >
                     View Pricing
                   </Button>
+                  </a>
                 </div>
               </AnimatedSection>
             </div>
@@ -233,8 +235,8 @@ export default function Home() {
             delay={0.2}
           />
           <FeatureShowcase
-            title="Find free high-res stock photos inside Snappa"
-            description="Get access to 5,000,000+ free, high-resolution, and totally not cheesy stock photos. You don't need to scour multiple stock libraries, worry about usage rights, or pay for the best background images anymore."
+            title="Find free high-res stock photos inside ShiniGami Designs"
+            description="Get access to  free, high-resolution, and totally not cheesy stock photos. You don't need to scour multiple stock libraries, worry about usage rights, or pay for the best background images anymore."
             imageSrc="/images/d3.jpg"
             imageAlt="Stock photos showcase"
             delay={0.3}
@@ -258,7 +260,7 @@ export default function Home() {
       </section>
 
       {/* Pricing Section */}
-      <section className="bg-white py-24 dark:bg-gray-900 sm:py-32">
+      <section id="pricing" className="bg-white py-24 dark:bg-gray-900 sm:py-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
