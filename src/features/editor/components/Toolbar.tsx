@@ -151,12 +151,12 @@ export const Toolbar = ({
 
   if (editor?.selectedObjects.length === 0) {
     return (
-      <div className="shrink-0 h-[56px] border-b bg-white w-full flex items-center overflow-x-auto z-[49] p-2 gap-x-2" />
+      <div className="shrink-0 h-[56px] border-b border-gray-200 bg-white w-full flex items-center overflow-x-auto z-[49] p-2 gap-x-2 shadow-sm" />
     );
   }
 
   return (
-    <div className="shrink-0 h-[56px] border-b bg-white w-full flex items-center overflow-x-auto z-[49] p-2 gap-x-2">
+    <div className="shrink-0 h-[56px] border-b border-gray-200 bg-white w-full flex items-center overflow-x-auto z-[49] p-2 gap-x-2 shadow-sm">
       {!isImage && (
         <div className="flex items-center h-full justify-center">
           <Hint label="Color" side="bottom" sideOffset={5}>
@@ -164,10 +164,13 @@ export const Toolbar = ({
               onClick={() => onChangeActiveTool("fill")}
               size="icon"
               variant="ghost"
-              className={cn(activeTool === "fill" && "bg-gray-100")}
+              className={cn(
+                "hover:bg-gray-100 transition-colors border border-gray-200",
+                activeTool === "fill" && "bg-gray-100"
+              )}
             >
               <div
-                className="rounded-sm size-4 border"
+                className="rounded-sm size-4 border border-gray-200 shadow-sm"
                 style={{ backgroundColor: properties.fillColor }}
               />
             </Button>
@@ -181,10 +184,13 @@ export const Toolbar = ({
               onClick={() => onChangeActiveTool("stroke-color")}
               size="icon"
               variant="ghost"
-              className={cn(activeTool === "stroke-color" && "bg-gray-100")}
+              className={cn(
+                "hover:bg-gray-100 transition-colors border border-gray-200",
+                activeTool === "stroke-color" && "bg-gray-100"
+              )}
             >
               <div
-                className="rounded-sm size-4 border-2 bg-white"
+                className="rounded-sm size-4 border-2 bg-white shadow-sm"
                 style={{ borderColor: properties.strokeColor }}
               />
             </Button>
@@ -198,7 +204,10 @@ export const Toolbar = ({
               onClick={() => onChangeActiveTool("stroke-width")}
               size="icon"
               variant="ghost"
-              className={cn(activeTool === "stroke-width" && "bg-gray-100")}
+              className={cn(
+                "hover:bg-gray-100 transition-colors border border-gray-200",
+                activeTool === "stroke-width" && "bg-gray-100"
+              )}
             >
               <BsBorderWidth className="size-4" />
             </Button>
@@ -213,6 +222,7 @@ export const Toolbar = ({
               size="icon"
               variant="ghost"
               className={cn(
+                "hover:bg-gray-100 transition-colors border border-gray-200",
                 "w-auto px-2 text-sm",
                 activeTool === "font" && "bg-gray-100"
               )}
@@ -232,7 +242,10 @@ export const Toolbar = ({
               onClick={toggleBold}
               size="icon"
               variant="ghost"
-              className={cn(properties.fontWeight > 500 && "bg-gray-100")}
+              className={cn(
+                "hover:bg-gray-100 transition-colors border border-gray-200",
+                properties.fontWeight > 500 && "bg-gray-100"
+              )}
             >
               <FaBold className="size-4" />
             </Button>
@@ -246,7 +259,10 @@ export const Toolbar = ({
               onClick={toggleItalic}
               size="icon"
               variant="ghost"
-              className={cn(properties.fontStyle === "italic" && "bg-gray-100")}
+              className={cn(
+                "hover:bg-gray-100 transition-colors border border-gray-200",
+                properties.fontStyle === "italic" && "bg-gray-100"
+              )}
             >
               <FaItalic className="size-4" />
             </Button>
@@ -260,7 +276,10 @@ export const Toolbar = ({
               onClick={toggleUnderline}
               size="icon"
               variant="ghost"
-              className={cn(properties.fontUnderline && "bg-gray-100")}
+              className={cn(
+                "hover:bg-gray-100 transition-colors border border-gray-200",
+                properties.fontUnderline && "bg-gray-100"
+              )}
             >
               <FaUnderline className="size-4" />
             </Button>
@@ -274,7 +293,10 @@ export const Toolbar = ({
               onClick={toggleLinethrough}
               size="icon"
               variant="ghost"
-              className={cn(properties.fontLinethrough && "bg-gray-100")}
+              className={cn(
+                "hover:bg-gray-100 transition-colors border border-gray-200",
+                properties.fontLinethrough && "bg-gray-100"
+              )}
             >
               <FaStrikethrough className="size-4" />
             </Button>
@@ -288,7 +310,10 @@ export const Toolbar = ({
               onClick={() => onChangeTextAlign("left")}
               size="icon"
               variant="ghost"
-              className={cn(properties.textAlign === "left" && "bg-gray-100")}
+              className={cn(
+                "hover:bg-gray-100 transition-colors border border-gray-200",
+                properties.textAlign === "left" && "bg-gray-100"
+              )}
             >
               <AlignLeft className="size-4" />
             </Button>
@@ -302,7 +327,10 @@ export const Toolbar = ({
               onClick={() => onChangeTextAlign("center")}
               size="icon"
               variant="ghost"
-              className={cn(properties.textAlign === "center" && "bg-gray-100")}
+              className={cn(
+                "hover:bg-gray-100 transition-colors border border-gray-200",
+                properties.textAlign === "center" && "bg-gray-100"
+              )}
             >
               <AlignCenter className="size-4" />
             </Button>
@@ -316,7 +344,10 @@ export const Toolbar = ({
               onClick={() => onChangeTextAlign("right")}
               size="icon"
               variant="ghost"
-              className={cn(properties.textAlign === "right" && "bg-gray-100")}
+              className={cn(
+                "hover:bg-gray-100 transition-colors border border-gray-200",
+                properties.textAlign === "right" && "bg-gray-100"
+              )}
             >
               <AlignRight className="size-4" />
             </Button>
@@ -338,7 +369,10 @@ export const Toolbar = ({
               onClick={() => onChangeActiveTool("filter")}
               size="icon"
               variant="ghost"
-              className={cn(activeTool === "filter" && "bg-gray-100")}
+              className={cn(
+                "hover:bg-gray-100 transition-colors border border-gray-200",
+                activeTool === "filter" && "bg-gray-100"
+              )}
             >
               <TbColorFilter className="size-4" />
             </Button>
@@ -352,7 +386,10 @@ export const Toolbar = ({
               onClick={() => onChangeActiveTool("remove-bg")}
               size="icon"
               variant="ghost"
-              className={cn(activeTool === "remove-bg" && "bg-gray-100")}
+              className={cn(
+                "hover:bg-gray-100 transition-colors border border-gray-200",
+                activeTool === "remove-bg" && "bg-gray-100"
+              )}
             >
               <SquareSplitHorizontal className="size-4" />
             </Button>
@@ -365,6 +402,9 @@ export const Toolbar = ({
             onClick={() => editor?.bringForward()}
             size="icon"
             variant="ghost"
+            className={cn(
+              "hover:bg-gray-100 transition-colors border border-gray-200"
+            )}
           >
             <ArrowUp className="size-4" />
           </Button>
@@ -376,6 +416,9 @@ export const Toolbar = ({
             onClick={() => editor?.sendBackwards()}
             size="icon"
             variant="ghost"
+            className={cn(
+              "hover:bg-gray-100 transition-colors border border-gray-200"
+            )}
           >
             <ArrowDown className="size-4" />
           </Button>
@@ -387,7 +430,10 @@ export const Toolbar = ({
             onClick={() => onChangeActiveTool("opacity")}
             size="icon"
             variant="ghost"
-            className={cn(activeTool === "opacity" && "bg-gray-100")}
+            className={cn(
+              "hover:bg-gray-100 transition-colors border border-gray-200",
+              activeTool === "opacity" && "bg-gray-100"
+            )}
           >
             <RxTransparencyGrid className="size-4" />
           </Button>
@@ -402,6 +448,9 @@ export const Toolbar = ({
             }}
             size="icon"
             variant="ghost"
+            className={cn(
+              "hover:bg-gray-100 transition-colors border border-gray-200"
+            )}
           >
             <Copy className="size-4" />
           </Button>
@@ -409,7 +458,14 @@ export const Toolbar = ({
       </div>
       <div className="flex items-center h-full justify-center">
         <Hint label="Delete" side="bottom" sideOffset={5}>
-          <Button onClick={() => editor?.delete()} size="icon" variant="ghost">
+          <Button
+            onClick={() => editor?.delete()}
+            size="icon"
+            variant="ghost"
+            className={cn(
+              "hover:bg-gray-100 transition-colors border border-gray-200"
+            )}
+          >
             <Trash className="size-4" />
           </Button>
         </Hint>

@@ -95,7 +95,7 @@ export const Editor = ({ initialData }: EditorProps) => {
   }, [init]);
   return (
     <>
-      <div className="h-full flex flex-col ">
+      <div className="h-full flex flex-col bg-gray-50">
         <Navbar
           id={initialData.id}
           editor={editor}
@@ -186,15 +186,17 @@ export const Editor = ({ initialData }: EditorProps) => {
             onChangeActiveTool={onChangeActiveTool}
           />
 
-          <main className="bg-muted flex-1 overflow-auto relative flex flex-col">
+          <main className="bg-gray-50 flex-1 overflow-auto relative flex flex-col">
             <Toolbar
               editor={editor}
               activeTool={activeTool}
               onChangeActiveTool={onChangeActiveTool}
               key={JSON.stringify(editor?.canvas.getActiveObject())}
             />
-            <div className="flex-1 h-full bg-muted" ref={workspaceRef}>
-              <canvas ref={canvasRef} />
+            <div className="flex-1 h-full bg-gray-50 p-4" ref={workspaceRef}>
+              <div className="w-full h-full rounded-lg shadow-lg bg-white border border-gray-200">
+                <canvas ref={canvasRef} />
+              </div>
             </div>
             <Footer editor={editor} />
           </main>

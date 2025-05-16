@@ -71,17 +71,24 @@ export const Navbar = ({
   });
 
   return (
-    <nav className="w-full flex items-center p-4 h-[68px] gap-x-8 border-b lg:pl-[34px]">
+    <nav className="w-full flex items-center p-4 h-[68px] gap-x-8 border-b border-gray-200 bg-white shadow-sm lg:pl-[34px]">
       <Logo />
       <div className="w-full flex items-center gap-x-1 h-full">
         <DropdownMenu modal={false}>
           <DropdownMenuTrigger asChild>
-            <Button size="sm" variant="ghost">
+            <Button
+              size="sm"
+              variant="ghost"
+              className="hover:bg-gray-100 border border-gray-200"
+            >
               File
               <ChevronDown className="size-4 ml-2" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="start" className="min-w-60">
+          <DropdownMenuContent
+            align="start"
+            className="min-w-60 shadow-lg border border-gray-200"
+          >
             <DropdownMenuItem
               onClick={() => openFilePicker()}
               className="flex items-center gap-x-2"
@@ -124,7 +131,7 @@ export const Navbar = ({
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-        <Separator orientation="vertical" className="mx-2" />
+        <Separator orientation="vertical" className="mx-2 h-6 bg-gray-200" />
         <Hint label="Select" side="bottom" sideOffset={10}>
           <Button
             variant="ghost"
@@ -177,12 +184,19 @@ export const Navbar = ({
         <div className="ml-auto flex items-center gap-x-4">
           <DropdownMenu modal={false}>
             <DropdownMenuTrigger asChild>
-              <Button size="sm" variant="ghost">
+              <Button
+                size="sm"
+                variant="ghost"
+                className="hover:bg-gray-100 border border-gray-200"
+              >
                 Export
                 <Download className="size-4 ml-4" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="min-w-60">
+            <DropdownMenuContent
+              align="end"
+              className="min-w-60 shadow-lg border border-gray-200"
+            >
               <DropdownMenuItem
                 className="flex items-center gap-x-2"
                 onClick={() => editor?.saveJson()}

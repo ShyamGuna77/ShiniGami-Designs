@@ -20,8 +20,8 @@ interface SidebarProps {
 
 const Sidebar = ({ activeTool, onChangeActiveTool }: SidebarProps) => {
   return (
-    <aside className="bg-white flex flex-col w-[70px] h-full border-r">
-      <nav className="flex flex-col h-full gap-2 py-2">
+    <aside className="bg-white flex flex-col w-[70px] h-full border-r border-gray-200 shadow-sm">
+      <nav className="flex flex-col h-full gap-2 py-4">
         <SidebarItem
           icon={Palette}
           label="Design"
