@@ -81,7 +81,7 @@ export const TemplateSidebar = ({
           </p>
         </div>
       )}
-      <ScrollArea>
+      <ScrollArea className="flex-1 h-[calc(100vh-180px)]">
         <div className="p-4">
           <div className="grid grid-cols-2 gap-4">
             {data &&
@@ -93,7 +93,7 @@ export const TemplateSidebar = ({
                     }}
                     onClick={() => onClick(template)}
                     key={template.id}
-                    className="relative w-full group hover:opacity-75 transition bg-muted rounded-sm overflow-hidden border"
+                    className="relative w-full group hover:opacity-75 transition bg-muted rounded-sm overflow-hidden border hover:shadow-md"
                   >
                     <Image
                       fill
@@ -102,12 +102,14 @@ export const TemplateSidebar = ({
                       className="object-cover"
                     />
                     {template.isPro && (
-                      <div className="absolute top-2 right-2 size-8 items-center flex justify-center bg-black/50 rounded-full">
+                      <div className="absolute top-2 right-2 size-8 items-center flex justify-center bg-black/50 rounded-full backdrop-blur-sm">
                         <Crown className="size-4 fill-yellow-500 text-yellow-500" />
                       </div>
                     )}
-                    <div className="opacity-0 group-hover:opacity-100 absolute left-0 bottom-0 w-full text-[10px] truncate text-white p-1 bg-black/50 text-left">
-                      {template.name}
+                    <div className="opacity-0 group-hover:opacity-100 absolute inset-0 bg-black/30 flex items-end">
+                      <p className="text-white text-xs p-2 truncate w-full text-left">
+                        {template.name}
+                      </p>
                     </div>
                   </button>
                 );

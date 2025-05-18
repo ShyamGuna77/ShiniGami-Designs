@@ -62,12 +62,10 @@ export const Editor = ({ initialData }: EditorProps) => {
   const onChangeActiveTool = useCallback(
     (tool: ActiveTool) => {
       if (tool === "draw") {
-        // Todo :Enable draw mode
         editor?.enableDrawingMode();
       }
 
       if (activeTool === "draw") {
-        //Todo :Disable draw mode
         editor?.disableDrawingMode();
       }
 
@@ -79,6 +77,7 @@ export const Editor = ({ initialData }: EditorProps) => {
     },
     [activeTool, editor]
   );
+
   useEffect(() => {
     const canvas = new fabric.Canvas(canvasRef.current, {
       controlsAboveOverlay: true,
@@ -93,9 +92,10 @@ export const Editor = ({ initialData }: EditorProps) => {
       canvas.dispose();
     };
   }, [init]);
+
   return (
     <>
-      <div className="h-full flex flex-col bg-gray-50">
+      <div className="h-full flex flex-col bg-gray-300">
         <Navbar
           id={initialData.id}
           editor={editor}
@@ -186,14 +186,17 @@ export const Editor = ({ initialData }: EditorProps) => {
             onChangeActiveTool={onChangeActiveTool}
           />
 
-          <main className="bg-gray-50 flex-1 overflow-auto relative flex flex-col">
+          <main className="bg-gray-100 flex-1 overflow-auto relative flex flex-col">
             <Toolbar
               editor={editor}
               activeTool={activeTool}
               onChangeActiveTool={onChangeActiveTool}
               key={JSON.stringify(editor?.canvas.getActiveObject())}
             />
-            <div className="flex-1 h-full bg-gray-50 p-4" ref={workspaceRef}>
+            <div
+              className="flex-1 h-full bg-gray-100 p-4 overflow-auto"
+              ref={workspaceRef}
+            >
               <div className="w-full h-full rounded-lg shadow-lg bg-white border border-gray-200">
                 <canvas ref={canvasRef} />
               </div>
