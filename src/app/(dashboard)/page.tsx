@@ -183,36 +183,42 @@ export default function Home() {
               description="Intuitive interface that makes design accessible to everyone, regardless of experience level."
               icon="MousePointer"
               delay={0.1}
+              imageSrc="/design/A1.png"
             />
             <FeatureCard
               title="Smart Templates"
               description="Hundreds of professionally designed templates to jumpstart your creative projects."
               icon="LayoutTemplate"
               delay={0.2}
+              imageSrc="/design/A2.jpg"
             />
             <FeatureCard
               title="Ai Image Generator"
               description="Generate Stunning Images with Ai with just a few clicks"
               icon="Users"
               delay={0.3}
+              imageSrc="/design/A3.png"
             />
             <FeatureCard
               title="Background Remover"
               description="Remove backgrounds from images with a single click using our AI-powered tool."
               icon="Eraser"
               delay={0.4}
+              imageSrc="/design/A4.png"
             />
             <FeatureCard
               title="Image Masking & Layers"
               description="Advanced layer controls and masking tools for professional-level design capabilities."
               icon="Layers"
               delay={0.5}
+              imageSrc="/design/A5.png"
             />
             <FeatureCard
               title="Multiple Export Formats"
               description="Export your designs in various formats including PNG, JPG, PDF, and SVG."
               icon="Download"
               delay={0.6}
+              imageSrc="/design/A6.jpg"
             />
           </div>
         </div>
