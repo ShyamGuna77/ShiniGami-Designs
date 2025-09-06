@@ -186,7 +186,7 @@ export const Editor = ({ initialData }: EditorProps) => {
             onChangeActiveTool={onChangeActiveTool}
           />
 
-          <main className="bg-gray-100 flex-1 overflow-auto relative flex flex-col">
+          <main className="bg-gray-100 flex-1 overflow-hidden relative flex flex-col">
             <Toolbar
               editor={editor}
               activeTool={activeTool}
@@ -194,10 +194,10 @@ export const Editor = ({ initialData }: EditorProps) => {
               key={JSON.stringify(editor?.canvas.getActiveObject())}
             />
             <div
-              className="flex-1 h-full bg-gray-100 p-4 overflow-auto"
+              className="flex-1 bg-gray-100 p-4 overflow-auto"
               ref={workspaceRef}
             >
-              <div className="w-full h-full rounded-lg shadow-lg bg-white border mt-8 border-gray-200">
+              <div className="w-full h-full rounded-lg shadow-lg bg-white border border-gray-200">
                 <canvas ref={canvasRef} />
               </div>
             </div>
