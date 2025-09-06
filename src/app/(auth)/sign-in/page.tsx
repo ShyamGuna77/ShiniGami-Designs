@@ -6,7 +6,7 @@ const SignInPage = async () => {
   const session = await auth();
 
   if (session) {
-    redirect("/");
+    redirect("/landing");
   }
   return <SignInCard />;
 };

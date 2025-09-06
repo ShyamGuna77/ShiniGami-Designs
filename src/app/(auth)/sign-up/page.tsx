@@ -6,7 +6,7 @@ const SignUpPage = async () => {
   const session = await auth();
 
   if (session) {
-    redirect("/");
+    redirect("/landing");
   }
 
   return <SignUpCard />;
