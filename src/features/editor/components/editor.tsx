@@ -197,7 +197,7 @@ export const Editor = ({ initialData }: EditorProps) => {
               className="flex-1 h-full bg-gray-100 p-4 overflow-auto"
               ref={workspaceRef}
             >
-              <div className="w-full h-full rounded-lg shadow-lg bg-white border mt-4 border-gray-200">
+              <div className="w-full h-full rounded-lg shadow-lg bg-white border mt-8 border-gray-200">
                 <canvas ref={canvasRef} />
               </div>
             </div>
