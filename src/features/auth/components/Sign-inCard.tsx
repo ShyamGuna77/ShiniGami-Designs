@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import Link from "next/link";
@@ -34,12 +32,12 @@ export const SignInCard = () => {
     signIn("credentials", {
       email: email,
       password: password,
-      callbackUrl: "/",
+      callbackUrl: "/landing",
     });
   };
 
   const onProviderSignIn = (provider: "github" | "google") => {
-    signIn(provider, { callbackUrl: "/" });
+    signIn(provider, { callbackUrl: "/landing" });
   };
 
   return (

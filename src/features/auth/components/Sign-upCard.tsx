@@ -28,7 +28,7 @@ export const SignUpCard = () => {
   const [password, setPassword] = useState("");
 
   const onProviderSignUp = (provider: "github" | "google") => {
-    signIn(provider, { callbackUrl: "/" });
+    signIn(provider, { callbackUrl: "/landing" });
   };
 
   const onCredentialSignUp = (e: React.FormEvent<HTMLFormElement>) => {
@@ -45,7 +45,7 @@ export const SignUpCard = () => {
           signIn("credentials", {
             email,
             password,
-            callbackUrl: "/",
+            callbackUrl: "/landing",
           });
         },
       }
